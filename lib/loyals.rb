@@ -1,0 +1,2 @@
+module Loyals
+end
