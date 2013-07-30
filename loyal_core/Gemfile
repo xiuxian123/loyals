@@ -1,0 +1,41 @@
+source "http://rubygems.org"
+
+# Declare your gem's dependencies in loyal_core.gemspec.
+# Bundler will treat runtime dependencies like base dependencies, and
+# development dependencies will be added by default to the :development group.
+gemspec
+
+# jquery-rails is used by the dummy application
+gem "jquery-rails"
+
+# Declare any dependencies that are still in development here instead of in
+# your gemspec. These might include edge Rails or gems from your path or
+# Git. Remember to move these dependencies to your gemspec before releasing
+# your gem to rubygems.org.
+
+# To use debugger
+# gem 'debugger'
+
+gem 'nokogiri'
+
+# markdown and 语法高亮
+gem 'redcarpet'
+# gem 'albino'
+gem 'coderay'
+
+# 图片上传
+gem 'carrierwave'
+gem 'mini_magick'
+
+# rails config
+gem "rails_config"
+
+# 一棵树
+gem 'awesome_nested_set'
+
+group :test, :development do
+  gem "rspec-rails"             #测试框架
+  gem "rspec"
+  gem "factory_girl_rails"
+end
+

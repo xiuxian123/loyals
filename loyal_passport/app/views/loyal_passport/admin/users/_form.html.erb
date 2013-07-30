@@ -1,0 +1,27 @@
+<div class='field'>
+  <%= f.label :email %>:
+  <%= f.object.email %>
+</div>
+
+<p>
+  <%= f.label :avatar %>
+  <%= image_tag(f.object.avatar_url :small) if f.object.avatar? %>
+  <%= f.file_field :avatar %>
+  <%= f.hidden_field :avatar_cache %>
+</p>
+
+<%= f.text_field :nick_name %>
+<%= f.text_field :true_name %>
+
+<div>
+  <% ::LoyalPassport::Role.all.each do |role| %>
+    <%= check_box_tag "user[role_ids][]", role.id, f.object.role_ids.include?(role.id) %>
+    <%= link_to "#{role.name}", loyal_passport_app.admin_loyal_passport_role_url(role.id) %>
+  <% end %>
+</div>
+
+
+<div class="actions">
+  <%= f.submit %>
+</div>
+

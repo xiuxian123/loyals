@@ -1,0 +1,25 @@
+<h1>用户角色列表</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>角色名称</th>
+    <td>标识</td>
+    <th col='3'>操作</th>
+  </tr>
+<% @loyal_passport_roles.each do |role| %>
+  <tr>
+    <td><%= role.id %></td>
+    <td><%= link_to role.name, loyal_passport_app.admin_loyal_passport_role_url(:id => role.id) %></td>
+    <td><%= role.permalink %></td>
+    <td><%= link_to "编辑", loyal_passport_app.edit_admin_loyal_passport_role_url(:id => role.id) %></td>
+    <td><%= link_to "删除", loyal_passport_app.admin_loyal_passport_role_url(
+      :id => role.id
+    ), :method => :delete, :data => {
+      :confirm => '确定要删除吗？'
+    } %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to "新建", loyal_passport_app.new_admin_loyal_passport_role_url %>

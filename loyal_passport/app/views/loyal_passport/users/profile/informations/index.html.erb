@@ -1,0 +1,35 @@
+<h1>个人中心</h1>
+<div class='informations'>
+  <div class='field'>
+    <b>昵称: </b>
+    <%= current_user.nick_name %>
+  </div>
+  <div class='field'>
+    <b>永久链接: </b>
+    <%= current_user.permalink %>
+  </div>
+  <div class='field'>
+    <b>邮箱: </b>
+    <%= current_user.email %>
+  </div>
+  <div class='field'>
+    <b>登录次数: </b>
+    <%= current_user.sign_in_count %>
+  </div>
+  <div class='field'>
+    <b>注册时间: </b>
+    <%= l current_user.created_at %>
+  </div>
+  <div class='field'>
+    <b>上一次登录时间: </b>
+    <%= l current_user.last_sign_in_at %>
+  </div>
+</div>
+
+<div class='other-links'>
+  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <div class='link-line'>
+      <%= link_to I18n.t('devise.views.edit_user_registration'), edit_registration_path(resource_name) %><br />
+    </div>
+  <% end -%>
+</div>

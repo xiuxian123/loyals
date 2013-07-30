@@ -1,0 +1,14 @@
+<h1>编辑用户信息</h1>
+
+<%= form_for(
+  @user,
+  :url => loyal_passport_app.admin_user_url(@user),
+  :builder => ::LoyalCore::ActionView::LabeledBuilder,
+  :as => :user
+) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>
+
+<%= link_to "取消", loyal_passport_app.admin_user_url(@user) %>
+<%= link_to "返回列表", loyal_passport_app.admin_users_url %>
+

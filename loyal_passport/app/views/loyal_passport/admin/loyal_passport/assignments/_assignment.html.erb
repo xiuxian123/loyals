@@ -1,0 +1,15 @@
+<li>
+  <% if assignment.user %>
+    <%= link_to "#{assignment.user.nick_name}", loyal_passport_app.admin_user_url(
+      :id => assignment.user.id
+    ) %>
+         <% end %>
+    (
+    <%= link_to '删除', loyal_passport_app.admin_loyal_passport_assignment_url(
+      :return_to => request.url,
+      :id => assignment.id
+    ), :method => :delete, :data => {
+      :confirm => '你确定要删除吗？'
+    } %>
+  )
+</li>

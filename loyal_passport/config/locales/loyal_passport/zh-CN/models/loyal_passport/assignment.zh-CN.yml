@@ -1,0 +1,24 @@
+zh-CN:
+  activerecord:
+    models:
+      loyal_passport/assignment:        '权限'
+    attributes:
+      loyal_passport/assignment:
+        user:        '用户'
+        role:        '角色'
+    errors:
+      models:
+        loyal_passport/assignment:
+          basic_attributes_errors: &basic_attributes_errors
+            blank: "不能为空"
+            invalid: "格式错误"
+            taken:   "已经被占用"
+            already_confirmed: '之前已经验证过'
+          attributes:
+            user:
+              <<: *basic_attributes_errors
+              blank: '不能为空并且必须存在'
+            role:
+              <<: *basic_attributes_errors
+              blank: '不能为空并且必须存在'
+

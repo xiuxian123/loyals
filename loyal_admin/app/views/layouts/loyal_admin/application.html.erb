@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title><%= LoyalAdmin.config.info_config[:title] %> - 管理后台</title>
+<%= stylesheet_link_tag    "loyal_admin/application", :media => "all" %>
+<%= javascript_include_tag "loyal_admin/application" %>
+<%= csrf_meta_tags %>
+</head>
+<body>
+<div id='nav' class='clearfix'>
+  <div class='nav-inner wrapper'>
+    <div class='status'>
+      <%= render :partial => 'loyal_passport/users/shared/status' %>
+    </div>
+
+      <%= link_to '管理后台', loyal_admin_app.root_url %>
+    </div>
+  </div>
+
+   <div id='container' class='clearfix'>
+     <div class='content-block wrapper clearfix'>
+       <div class='main-content clearfix'>
+         <%= yield %>
+       </div>
+
+       <div class='side-content clearfix'>
+         <ul>
+           <h3>
+             <%= link_to "用户管理", loyal_passport_app.admin_users_url(
+               :subdomain => ::LoyalAdmin.config.subdomain) %>
+           </h3> 
+           <li>
+             <%= link_to "角色管理", loyal_passport_app.admin_loyal_passport_roles_url(
+               :subdomain => ::LoyalAdmin.config.subdomain) %>
+           </li>
+           <li>
+           <%= link_to "用户列表", loyal_passport_app.admin_users_url(
+             :subdomain => ::LoyalAdmin.config.subdomain) %>
+           </li>
+         </ul>
+
+         <ul>
+           <h3>
+             <%= link_to '区域定制管理', loyal_admin_app.display_boards_url %>
+           </h3>
+
+           <li><%= link_to "区域列表", loyal_admin_app.display_boards_url %></li>
+           <li><%= link_to "新建区域", loyal_admin_app.new_display_board_url %></li>
+           <li><%= link_to "显示块列表", loyal_admin_app.display_recipes_url %></li>
+           <li><%= link_to "新建显示块", loyal_admin_app.new_display_recipe_url %></li>
+         </ul>
+        
+        <%= render :partial => 'loyal_admin/shared/side_panel' %>
+
+         <ul>
+           <h3>
+             公共管理
+           </h3>
+
+           <li><%= link_to "皮肤分类管理", loyal_core_app.admin_skin_folders_url %></li>
+           <li><%= link_to "皮肤管理", loyal_core_app.admin_skin_recipes_url %></li>
+         </ul>
+
+         <%= yield :side %>
+       </div>
+     </div>
+   </div>
+
+   <div id='footer'>
+
+   </div>
+
+   </body>
+ </html>

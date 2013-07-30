@@ -1,0 +1,8 @@
+zh-CN:
+  loyal_core:
+    action_view:
+      form_builder:
+        submit:
+          disable_with:   '正在提交...'
+          default_value:  '提交'
+  

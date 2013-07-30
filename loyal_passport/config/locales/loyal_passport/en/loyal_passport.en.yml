@@ -1,0 +1,20 @@
+en:
+  loyal_passport:
+    name: Passport
+
+  devise:
+    views:
+      resend_unlock_instructions: 'Resend unlock instructions'
+      sign_in: "Sign in"
+      sign_up: "Sign up"
+      sign_out: "Sign out"
+      forgot_your_password: "Forgot your password?"
+      didnot_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
+      didnot_receive_unlock_instructions: "Didn't receive unlock instructions?"
+      sign_in_with: "Sign in with %{provider}"
+      send_me_reset_password_instructions: "Send me reset password instructions"
+      change_your_password: "Change your password"
+      change_my_password: "Change my password"
+      resend_confirmation_instructions: 'Resend confirmation instructions'
+      resend_unlock_instructions: 'Resend unlock instructions'
+

@@ -1,0 +1,47 @@
+zh-CN:
+  loyal_passport:
+    welcome: '您好，%{name}！'
+    name: "通行证"
+    profile:
+      root:   '个人中心'
+    confirm:
+      do_you_want_sign_out?: '你确定要退出吗？'
+      are_you_sure_cancel_your_account?:  '您确定要删除您的帐号？'
+    logics:
+      you_cannot_cancel_account:  '对不起，系统不允许您删除帐号'
+    form:
+      submit:
+        one: "由于 1 个错误导致表单无法提交 :"
+        other: "由于 %{count}个错误导致此表单无法提交:"
+    form_builder:
+      submit:
+        disable_with: '正在提交...'
+    error:
+      access_deny:  '对不起！你没有权限！'
+
+  devise:
+    views:
+      edit:    '修改'
+      resend_unlock_instructions: '重新发送解锁邮件'
+      sign_in: "登录"
+      sign_up: "注册"
+      sign_up_title: "注册新用户"
+      sign_out: "退出"
+      forgot_your_password: "忘记了您的密码?"
+      didnot_receive_confirmation_instructions: "没有收到激活邮件?"
+      didnot_receive_unlock_instructions: "没有收到解锁邮件?"
+      sign_in_with: "使用 %{provider} 登录"
+      send_me_reset_password_instructions: "给我发送重置密码的邮件"
+      change_your_password: "修改您的密码"
+      change_my_password: "修改我的密码"
+      resend_confirmation_instructions: '重新发送激活邮件'
+      resend_unlock_instructions: '重新发送解锁邮件'
+      edit_user_registration:     '修改用户信息'
+      update_user_registration:   '更新'
+      leave_blank_if_you_do_not_want_to_change_it: '如果不想修改，请留空' # leave blank if you don't want to change it
+      we_need_your_current_password_to_confirm_your_changes: '我们需要验证一下您的当前密码'
+                                          # we need your current password to confirm your changes
+      cancel_my_account: '删除我的帐号' # Cancel my account
+      unhappy?: '这里不开心？'
+
+

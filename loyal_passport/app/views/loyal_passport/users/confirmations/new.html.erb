@@ -1,0 +1,19 @@
+<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+  <fieldset>
+  <legend><%= I18n.t('devise.views.resend_confirmation_instructions') %></legend>
+  <%#= devise_error_messages! %>
+
+  <div class='fields'>
+
+    <div class='field'><%= f.label :email %><br />
+      <%= f.email_field :email %></div>
+
+    <div class='field'><%= f.submit I18n.t('devise.views.resend_confirmation_instructions'), :data => {
+      :disable_with => I18n.t('loyal_passport.form_builder.submit.disable_with')
+    } %></div>
+  </div>
+
+  </fieldset>
+<% end %>
+
+<%= render "loyal_passport/users/shared/links" %>

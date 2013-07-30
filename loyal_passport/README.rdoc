@@ -1,0 +1,6 @@
+= LoyalPassport
+
+This project rocks and uses MIT-LICENSE.
+
+#################################################
+rake loyal_passport:install:migrations

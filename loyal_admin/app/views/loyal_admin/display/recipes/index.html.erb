@@ -1,0 +1,25 @@
+<h1>显示域列表</h1>
+
+<table>
+  <tr>
+    <th>
+      ID
+    </th>
+    <th>名称</th>
+    <th col='3'>操作</th>
+  </tr>
+  <% @display_recipes.each do |recipe| %>
+    <tr>
+      <td><%= recipe.id %></td>
+      <td><%= link_to "#{recipe.text}", loyal_admin_app.display_recipe_url(:id => recipe.id) %></td>
+      <td>
+        <%= link_to "编辑", loyal_admin_app.edit_display_recipe_url(:id => recipe.id) %>
+        <%= link_to "删除", loyal_admin_app.display_recipe_url(:id => recipe.id), :method => :delete, :confirm => '确定要删除吗？' %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @display_recipes %>
+
+<%= link_to "新建", loyal_admin_app.new_display_recipe_url %>

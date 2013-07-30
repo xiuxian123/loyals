@@ -1,0 +1,5 @@
+<p><%= I18n.t('loyal_passport.views.mailer.welcome_user', :nick_name => @resource.nick_name) %>!</p>
+
+<p><%= I18n.t('loyal_passport.views.mailer.you_can_confirm_email_through_the_link') %></p>
+
+<p><%= link_to I18n.t('loyal_passport.views.mailer.confirm_my_account'), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

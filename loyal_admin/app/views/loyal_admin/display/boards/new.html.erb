@@ -1,0 +1,11 @@
+<h1>新建新显示区</h1>
+
+<%= form_for(
+  @board,
+  :url => loyal_admin_app.display_boards_url,
+  :builder => ::LoyalCore::ActionView::LabeledBuilder,
+  :as => :board
+) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>
+

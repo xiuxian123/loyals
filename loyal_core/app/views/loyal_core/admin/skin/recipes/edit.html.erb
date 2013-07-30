@@ -1,0 +1,11 @@
+<%= form_for(
+  @loyal_core_skin_recipe,
+  :url => loyal_core_app.admin_skin_recipe_url(:id => @loyal_core_skin_recipe.id),
+  :builder => ::LoyalCore::ActionView::LabeledBuilder,
+  :as => :loyal_core_skin_recipe
+) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>
+
+<%= link_to "新建", loyal_core_app.new_admin_skin_recipe_url %>
+

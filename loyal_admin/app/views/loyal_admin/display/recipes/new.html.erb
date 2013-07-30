@@ -1,0 +1,11 @@
+<h1>新建显示块</h1>
+
+<%= form_for(
+  @display_recipe,
+  :url => loyal_admin_app.display_recipes_url,
+  :builder => ::LoyalCore::ActionView::LabeledBuilder,
+  :as => :display_recipe
+) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>
+

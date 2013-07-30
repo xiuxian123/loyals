@@ -1,0 +1,15 @@
+en:
+  loyal_passport:
+    views:
+      mailer:
+        welcome_user: "Welcome %{nick_name}"
+        you_can_confirm_email_through_the_link: 'You can confirm your account email through the link below:'
+        confirm_my_account: "Confirm my account"
+        hello_user:   "Hello，%{nick_name}"
+        some_one_has_requested_a_link_to_change_you_password: "Someone has requested a link to change your password, and you can do this through the link below."
+        if_you_not_request_it_ignore_it: "If you didn't request this, please ignore this email."
+        you_password_wont_change: "Your password won't change until you access the link above and create a new one."
+        change_your_password: 'Change your password.'
+        your_account_locked:      'Your account has been locked due to an excessive amount of unsuccessful sign in attempts.'
+        click_the_link_unlock_your_account: 'Click the link below to unlock your account:'
+        unlock_your_account:  'Unlock my account'

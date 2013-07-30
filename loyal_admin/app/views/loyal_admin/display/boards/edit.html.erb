@@ -1,0 +1,12 @@
+<h1>编辑显示</h1>
+
+<%= form_for(
+  @board,
+  :url => loyal_admin_app.display_board_url(:id => @board.id),
+  :builder => ::LoyalCore::ActionView::LabeledBuilder,
+  :as => :board
+) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>
+
+<%= link_to "新建", loyal_admin_app.new_display_board_url %>

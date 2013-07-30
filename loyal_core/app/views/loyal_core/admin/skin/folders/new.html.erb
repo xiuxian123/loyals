@@ -1,0 +1,11 @@
+<h1>新建新分区</h1>
+
+<%= form_for(
+  @loyal_core_skin_folder,
+  :url => loyal_core_app.admin_skin_folders_url,
+  :builder => ::LoyalCore::ActionView::LabeledBuilder,
+  :as => :loyal_core_skin_folder
+) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>
+

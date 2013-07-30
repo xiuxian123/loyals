@@ -1,0 +1,8 @@
+zh-CN:
+  simple_captcha:
+    label: '请输验证码'
+    placeholder: '请输验证码'
+    retry:   '看不清? 重新获取'
+    message:
+      default: "不正确"
+

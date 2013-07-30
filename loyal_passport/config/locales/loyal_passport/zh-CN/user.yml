@@ -1,0 +1,82 @@
+zh-CN:
+  activerecord:
+    models:
+      user:        '用户'
+    attributes:
+      user:
+        email:         '邮箱'
+        password:      '密码'
+        avatar:        '头像'
+        confirmation_token: '激活链接'
+        password_confirmation: '重复密码'
+        remember_me:   '记住密码'
+        current_password: '当前密码'
+        nick_name:        '昵称'
+        true_name:        '真实姓名'
+        simple_captcha:   '验证码'
+        permalink:        '个性域名'
+    errors:
+      models:
+        user:
+          basic_attributes_errors: &basic_attributes_errors
+            blank: "不能为空"
+            invalid: "格式错误"
+            taken:   "已经被占用"
+            already_confirmed: '之前已经验证过'
+          attributes:
+            phone_number:
+              <<: *basic_attributes_errors
+            email:
+              <<: *basic_attributes_errors
+              invalid: "是无效的"
+            captcha:
+              message: '不正确'
+
+
+#  en:
+#    # Attributes names common to most models
+#    #attributes:
+#      #created_at: "Created at"
+#      #updated_at: "Updated at"
+#  
+#    # Default error messages
+#    errors:
+#      messages:
+#        taken: "has already been taken"
+#  
+#    # Active Record models configuration
+#    activerecord:
+#      errors:
+#        messages:
+#          record_invalid: "Validation failed: %{errors}"
+#          restrict_dependent_destroy:
+#            one: "Cannot delete record because a dependent %{record} exists"
+#            many: "Cannot delete record because dependent %{record} exist"
+#          # Append your own errors here or at the model/attributes scope.
+#  
+#        # You can define own errors for models or model attributes.
+#        # The values :model, :attribute and :value are always available for interpolation.
+#        #
+#        # For example,
+#        #   models:
+#        #     user:
+#        #       blank: "This is a custom blank message for %{model}: %{attribute}"
+#        #       attributes:
+#        #         login:
+#        #           blank: "This is a custom blank message for User login"
+#        # Will define custom blank validation message for User model and
+#        # custom blank validation message for login attribute of User model.
+#        #models:
+#  
+#      # Translate model names. Used in Model.human_name().
+#      #models:
+#        # For example,
+#        #   user: "Dude"
+#        # will translate User model name to "Dude"
+#  
+#      # Translate model attribute names. Used in Model.human_attribute_name(attribute).
+#      #attributes:
+#        # For example,
+#        #   user:
+#        #     login: "Handle"
+#        # will translate User attribute "login" as "Handle"

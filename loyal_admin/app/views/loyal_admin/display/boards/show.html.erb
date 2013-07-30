@@ -1,0 +1,30 @@
+<h1>【分区】 <%= @board.name %></h1>
+
+<div>
+  <b>名称:</b><%= @board.name %><br/>
+  <b>简称:</b><%= @board.short_name %><br/>
+  <b>命名空间:</b><%= @board.space %><br/>
+  <b>永久链接</b><%= @board.permalink %><br/>
+  <% if @board.parent %>
+    <b>上一级</b><%= link_to "#{@board.parent.name}", loyal_admin_app.display_board_url(:id => @board.parent_id) %><br/>
+  <% end %>
+  <b>简介</b><%= @board.instroduction %><br/>
+  <b>描述</b>
+    <br/><%= raw @board.description %><br/>
+</div>
+
+<%= link_to "新建", loyal_admin_app.new_display_board_url %>
+<%= link_to "编辑", loyal_admin_app.edit_display_board_url(:id => @board.id) %>
+<%= link_to "返回列表", loyal_admin_app.display_boards_url %>
+
+
+<h3>项目列表</h3>
+<% @board.items.each do |item| %>
+  <% case item.target
+    when ::Ruby800::Category %>
+    分类:<%= link_to "#{item.target.short_name}" %><br/>
+  <% end %>
+
+<% end %>
+
+

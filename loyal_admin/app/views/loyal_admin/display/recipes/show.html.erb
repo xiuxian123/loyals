@@ -1,0 +1,23 @@
+<h1>【显示块】 <%= @display_recipe.text %></h1>
+
+<div>
+  <h3>预览</h3>
+
+  default: <%= raw @display_recipe.generate_html :default %>
+
+</div>
+
+<div>
+  <b>URL:</b><%= @display_recipe.url %><br/>
+  <b>文本:</b><%= @display_recipe.text %><br/>
+  <b>style:</b><%= @display_recipe.style %><br/>
+  <b>Title:</b><%= @display_recipe.title %><br/>
+  <b>Open Style:</b><%= @display_recipe.filter_named_open_style.desc %><br/>
+  <b>Content</b><%= @display_recipe.content %><br/>
+  <b>Content预览</b><%= raw @display_recipe.content %><br/>
+</div>
+
+<%= link_to "新建", loyal_admin_app.new_display_recipe_url %>
+<%= link_to "编辑", loyal_admin_app.edit_display_recipe_url(:id => @display_recipe.id) %>
+<%= link_to "返回列表", loyal_admin_app.display_recipes_url %>
+

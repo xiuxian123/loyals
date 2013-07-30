@@ -1,0 +1,8 @@
+<% display_flashes = flash.to_hash.slice(:notice, :alert) %>
+<% if display_flashes.any? %>
+  <div class='flash-messages'>
+    <% display_flashes.each do |key, value| %>
+      <p class="<%= key %>"><%= value %></p>
+    <% end %>
+  </div>
+<% end %>

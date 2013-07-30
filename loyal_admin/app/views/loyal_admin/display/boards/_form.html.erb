@@ -1,0 +1,11 @@
+<%= f.nested_parent_select :parent_id, nil %>
+<%= f.text_field :name %>
+<%= f.text_field :short_name %>
+<%= f.text_field :space %>
+<%= f.text_field :permalink %>
+
+<%= f.text_area :instroduction, :style => "height: 50px;" %>
+<%= f.kindeditor :description %>
+
+<%= f.submit %>
+

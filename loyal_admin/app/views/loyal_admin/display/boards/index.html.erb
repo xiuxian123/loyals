@@ -1,0 +1,23 @@
+<h1>显示区域列表</h1>
+
+<table>
+  <tr>
+    <th>
+      ID
+    </th>
+    <th>名称</th>
+    <th col='3'>操作</th>
+  </tr>
+  <% ::LoyalAdmin::Display::Board.nested_set_options do |board| %>
+    <tr>
+      <td><%= board.id %></td>
+      <td><%= link_to "#{'- ' * board.level} #{board.name}", loyal_admin_app.display_board_url(:id => board.id) %></td>
+      <td>
+        <%= link_to "编辑", loyal_admin_app.edit_display_board_url(:id => board.id) %>
+        <%= link_to "删除", loyal_admin_app.display_board_url(:id => board.id), :method => :delete, :confirm => '确定要删除吗？' %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "新建", loyal_admin_app.new_display_board_url %>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title><%= I18n.t('loyal_passport.name') %></title>
+<%= stylesheet_link_tag    "loyal_passport/application", :media => "all" %>
+<%= javascript_include_tag "loyal_passport/application" %>
+<%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id='nav' class='clearfix'>
+  <div class='nav-inner wrapper'>
+      <div class='status'>
+        <%= render :partial => 'loyal_passport/users/shared/status' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id='container' class='clearfix'>
+  <div class='content-block wrapper clearfix'>
+    <% if user_signed_in? %>
+      <%= render :partial => 'loyal_passport/users/shared/nav' %>
+    <% end %>
+
+    <%= render :partial => 'loyal_passport/users/shared/flashes' %>
+
+    <div class='main-content clearfix'>
+      <%= yield %>
+    </div>
+
+    <div class='side-content clearfix'>
+      <%= yield :side %>
+    </div>
+  </div>
+</div>
+
+<%= render :partial => 'loyal_passport/users/shared/footer' %>
+
+</body>
+</html>

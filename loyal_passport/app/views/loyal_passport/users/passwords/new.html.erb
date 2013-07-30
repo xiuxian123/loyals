@@ -1,0 +1,19 @@
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name),
+             :html => { :method => :post }) do |f| %>
+  <fieldset>
+    <legend><%= I18n.t('devise.views.forgot_your_password') %></legend>
+    <%#= devise_error_messages! %>
+    <%= f.hidden_field :reset_password_token %>
+  
+    <div class='fields'>
+      <div class='field'><%= f.label :email %><br />
+        <%= f.email_field :email %></div>
+  
+      <div class='field'><%= f.submit I18n.t('devise.views.send_me_reset_password_instructions'), :data => {
+        :disable_with => I18n.t('loyal_passport.form_builder.submit.disable_with') 
+      } %></div>
+    </div>
+  </fieldset>
+<% end %>
+
+<%= render "loyal_passport/users/shared/links" %>

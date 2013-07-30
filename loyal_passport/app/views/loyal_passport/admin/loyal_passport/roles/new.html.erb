@@ -1,0 +1,15 @@
+<h1>新建新角色</h1>
+
+<%= form_for(
+  @loyal_passport_role,
+  :url => loyal_passport_app.admin_loyal_passport_roles_url,
+  :builder => ::LoyalCore::ActionView::LabeledBuilder,
+  :as => :loyal_passport_role
+) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>
+
+<div>
+  <%= link_to "返回列表", loyal_passport_app.admin_loyal_passport_roles_url %>
+</div>
+
