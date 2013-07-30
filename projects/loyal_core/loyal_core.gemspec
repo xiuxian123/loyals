@@ -7,13 +7,13 @@ require "loyal_core/version"
 Gem::Specification.new do |s|
   s.name        = "loyal_core"
   s.version     = LoyalCore::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of LoyalCore."
-  s.description = "TODO: Description of LoyalCore."
+  s.authors     = ["happy"]
+  s.email       = ["andywang7259@gmail.com"]
+  s.homepage    = "http://develop.xiuxian123.com"
+  s.summary     = "Summary of LoyalCore."
+  s.description = "Description of LoyalCore."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails"
   s.add_dependency "loyal_rails_kindeditor"
