@@ -1,4 +1,6 @@
 # -*- encoding : utf-8 -*-
+require 'loyal_core'
+
 module LoyalAdmin
   class Engine < ::Rails::Engine
     isolate_namespace LoyalAdmin

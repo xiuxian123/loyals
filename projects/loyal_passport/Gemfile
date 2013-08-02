@@ -1,16 +1,12 @@
 source "http://rubygems.org"
 
-gem 'loyal_devise'
-gem 'cancan'
-gem 'omniauth'
-
 # Declare your gem's dependencies in loyal_passport.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 gemspec
 
 # jquery-rails is used by the dummy application
-gem "jquery-rails"
+# gem "jquery-rails"
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
@@ -20,21 +16,10 @@ gem "jquery-rails"
 # To use debugger
 # gem 'debugger'
 
-# 软删除 ######################################################################
-gem "acts_as_paranoid"
-
-gem "paperclip", "~> 3.0"
-
-# rails config
-gem "rails_config"
-
-# 一棵树
-gem 'awesome_nested_set'
-
 group :test, :development do
   gem "rspec"
   gem "rspec-rails"             #测试框架
-  #  gem "factory_girl"
-  #  gem "factory_girl_rails"
+  gem "factory_girl"
+  gem "factory_girl_rails"
 end
 
