@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    loyal_core (0.0.6)
+    loyal_core (0.0.7)
       awesome_nested_set
       carrierwave
       coderay
@@ -11,6 +11,7 @@ PATH
       loyal_simple_captcha
       mini_magick
       nokogiri
+      protected_attributes
       rails
       rails_config
       redcarpet
@@ -84,6 +85,8 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     polyglot (0.3.3)
+    protected_attributes (1.0.3)
+      activemodel (>= 4.0.0, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -146,7 +149,6 @@ PLATFORMS
 
 DEPENDENCIES
   factory_girl_rails
-  jquery-rails
   loyal_core!
   rspec
   rspec-rails

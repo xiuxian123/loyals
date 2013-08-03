@@ -1,12 +1,6 @@
 # -*- encoding : utf-8 -*-
 LoyalCore::Engine.routes.draw do
 
-  scope :admin, :module => :admin, :as => :admin, :path => :loyal_core do
-    namespace :skin do
-      resources :folders
-      resources :recipes
-    end
-  end
   
   namespace :ajax do
     scope :core, :as => :core, :path => :core do

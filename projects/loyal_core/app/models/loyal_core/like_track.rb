@@ -6,7 +6,7 @@ module LoyalCore
 
     # self.acts_as_tiny_cached
 
-    self.loyal_passport_acts_as_creator_able
+    self.loyal_core_acts_as_creator_able
 
     belongs_to :target, :polymorphic => true, :counter_cache => :liked_count
 

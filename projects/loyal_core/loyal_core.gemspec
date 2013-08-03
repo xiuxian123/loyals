@@ -15,6 +15,8 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
+  s.add_dependency "protected_attributes"
+
   # rails config
   s.add_dependency "rails_config"
 
@@ -35,6 +37,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
   s.add_dependency "tiny_cache"
 
+  # s.add_dependency "loyal_admin"
   s.add_dependency "loyal_rails_kindeditor"
   s.add_dependency "loyal_acts_as_paranoid"
   s.add_dependency "loyal_simple_captcha"

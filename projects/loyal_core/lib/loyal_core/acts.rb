@@ -15,6 +15,8 @@ module LoyalCore
   autoload :ActsAsNamedFilterAble,      "#{File.dirname(__FILE__)}/acts/named_filter_able"
 
   autoload :ActsAsSkinDishAble,         "#{File.dirname(__FILE__)}/acts/skin_dish_able"
+
+  autoload :ActsAsCreatorAble,          "#{File.dirname(__FILE__)}/acts/creator_able"
 end
 
 if defined?(ActiveRecord::Base)
@@ -32,4 +34,6 @@ if defined?(ActiveRecord::Base)
 
   ::ActiveRecord::Base.send :include, ::LoyalCore::ActsAsNamedFilterAble
   ::ActiveRecord::Base.send :include, ::LoyalCore::ActsAsSkinDishAble
+
+  ::ActiveRecord::Base.send :include, ::LoyalCore::ActsAsCreatorAble
 end

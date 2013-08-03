@@ -20,7 +20,7 @@ module LoyalCore
     validates_presence_of :name
 
     # 用于作者
-    self.loyal_passport_acts_as_creator_able
+    self.loyal_core_acts_as_creator_able
 
     self.loyal_core_acts_as_has_avatar
 

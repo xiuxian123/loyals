@@ -5,7 +5,7 @@ module LoyalCore
 
     # self.acts_as_tiny_cached
 
-    self.loyal_passport_acts_as_creator_able
+    self.loyal_core_acts_as_creator_able
 
     # TODO: counter_cache 是否需要？
     belongs_to :target, :polymorphic => true, :counter_cache => true

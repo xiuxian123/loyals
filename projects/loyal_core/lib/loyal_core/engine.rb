@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+require "protected_attributes"
 require "tiny_cache"
 # rails config
 require "rails_config"
