@@ -1,0 +1,32 @@
+<h1>【皮肤分类】 <%= @loyal_core_skin_folder.name %></h1>
+
+<div>
+  <b>短标题</b><%= @loyal_core_skin_folder.short_name %><br/>
+  <b>简介</b><%= @loyal_core_skin_folder.instroduction %><br/>
+  <b>描述</b><%= @loyal_core_skin_folder.description %><br/>
+</div>
+
+
+<%= link_to "编辑", loyal_admin_app.edit_loyal_core_skin_folder_url(:id => @loyal_core_skin_folder.id) %>
+<%= link_to "返回列表", loyal_admin_app.loyal_core_skin_folders_url %>
+
+<div>
+  <h3>皮肤</h3>
+  <%= paginate @loyal_core_skin_recipes %>
+
+  <ul>
+    <% @loyal_core_skin_recipes.each do |recipe| %>
+      <li>
+        <%= link_to "#{recipe.name}", loyal_admin_app.loyal_core_skin_recipe_url(
+          :id => recipe.id
+        ) %> 
+      </li>
+    <% end %>
+  </ul>
+
+  <% if @loyal_core_skin_recipes.empty? %>
+    为空
+  <% end %>
+
+  <%= paginate @loyal_core_skin_recipes %>
+</div>

@@ -1,0 +1,11 @@
+<h1>新建新皮肤</h1>
+
+<%= form_for(
+  @loyal_core_skin_recipe,
+  :url => loyal_admin_app.loyal_core_skin_recipes_url,
+  :builder => ::LoyalCore::ActionView::LabeledBuilder,
+  :as => :loyal_core_skin_recipe
+) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>
+
