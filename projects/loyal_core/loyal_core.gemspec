@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "loyal_rails_kindeditor"
   s.add_dependency "loyal_acts_as_paranoid"
+  s.add_dependency "loyal_simple_captcha"
 
   s.add_dependency "rails"
 

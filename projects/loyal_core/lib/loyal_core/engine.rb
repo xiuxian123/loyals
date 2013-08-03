@@ -6,6 +6,7 @@ require "loyal_acts_as_paranoid"
 # markdown and 语法高亮
 require 'redcarpet'
 require 'coderay'
+require 'loyal_simple_captcha'
 # 图片上传
 require 'carrierwave'
 require 'mini_magick'
