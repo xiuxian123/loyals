@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
  
+  s.add_dependency "tiny_cache"
   s.add_dependency "loyal_core"
   s.add_dependency "loyal_admin"
   s.add_dependency "loyal_passport"
