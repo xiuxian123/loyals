@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    loyal_core (0.0.5)
+    loyal_core (0.0.6)
       awesome_nested_set
       carrierwave
       coderay
@@ -14,6 +14,7 @@ PATH
       rails
       rails_config
       redcarpet
+      tiny_cache
 
 GEM
   remote: http://rubygems.org/
@@ -133,6 +134,8 @@ GEM
     thread_safe (0.1.2)
       atomic
     tilt (1.4.1)
+    tiny_cache (0.0.3)
+      rails (~> 4.0.0)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)

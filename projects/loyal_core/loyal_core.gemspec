@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'awesome_nested_set'
 
   s.add_dependency "jquery-rails"
+  s.add_dependency "tiny_cache"
 
   s.add_dependency "loyal_rails_kindeditor"
   s.add_dependency "loyal_acts_as_paranoid"
