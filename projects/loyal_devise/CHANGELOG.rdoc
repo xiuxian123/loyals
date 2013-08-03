@@ -1,4 +1,4 @@
-== 3.0.0.rc
+== master
 
 * enhancements
   * Rails 4 and Strong Parameters compatibility. (@carlosantoniodasilva, @josevalim, @latortuga, @lucasmazza, @nashby, @rafaelfranca, @spastorino)

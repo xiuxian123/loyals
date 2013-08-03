@@ -78,14 +78,7 @@ module Devise
     def redirect_url
       if warden_message == :timeout
         flash[:timedout] = true
-
-        path = if request.get?
-          attempted_path
-        else
-          request.referrer
-        end
-
-        path || scope_path
+        attempted_path || scope_path
       else
         scope_path
       end

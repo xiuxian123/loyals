@@ -57,7 +57,7 @@ You can view the Devise documentation in RDoc format here:
 
 http://rubydoc.info/github/plataformatec/devise/master/frames
 
-If you need to use Devise with previous versions of Rails, you can always run "gem server" from the command line after you install the gem to access the old documentation.
+If you need to use Devise with Rails 2.3, you can always run "gem server" from the command line after you install the gem to access the old documentation.
 
 ### Example applications
 
@@ -90,7 +90,7 @@ Once you have solidified your understanding of Rails and authentication mechanis
 
 ## Getting started
 
-Devise 3.0 works with Rails 3.2 onwards. You can add it to your Gemfile with:
+Devise 2.0 works with Rails 3.1 onwards. You can add it to your Gemfile with:
 
 ```ruby
 gem 'devise'
@@ -110,7 +110,7 @@ The generator will install an initializer which describes ALL Devise's configura
 rails generate devise MODEL
 ```
 
-Replace MODEL by the class name used for the applications users, it's frequently `User` but could also be `Admin`. This will create a model (if one does not exist) and configure it with default Devise modules. Next, you'll usually run `rake db:migrate` as the generator will have created a migration file (if your ORM supports them). This generator also configures your config/routes.rb file to point to the Devise controller.
+Replace MODEL by the class name used for the applications users, it's frequently 'User' but could also be 'Admin'. This will create a model (if one does not exist) and configure it with default Devise modules. Next, you'll usually run "rake db:migrate" as the generator will have created a migration file (if your ORM supports them). This generator also configures your config/routes.rb file to point to the Devise controller.
 
 Note that you should re-start your app here if you've already started it. Otherwise you'll run into strange errors like users being unable to login and the route helpers being undefined.
 
@@ -200,32 +200,6 @@ class ApplicationController < ActionController::Base
 end
 ```
 
-If you have multiple roles, you may want to set up different parameter sanitizer per role. In this case, we recommend inheriting from `Devise::ParameterSanitizer` and add your own logic:
-
-```ruby
-class User::ParameterSanitizer < Devise::ParameterSanitizer
-  def sign_in
-    default_params.permit(:username, :email)
-  end
-end
-```
-
-And then configure your controllers to use it:
-
-```ruby
-class ApplicationController < ActionController::Base
-  protected
-
-  def devise_parameter_sanitizer
-    if resource_class.is_a?(User)
-      User::ParameterSanitizer.new(User, :user, params)
-    else
-      super # Use the default one
-    end
-  end
-end
-```
-
 The example above overrides the permitted parameters for the user to be both `:username` and `:email`. The non-lazy way to configure parameters would be by defining the before filter above in a custom controller. We detail how to configure and customize controllers in some sections below.
 
 ### Configuring views
@@ -250,24 +224,22 @@ rails generate devise:views users
 
 If the customization at the views level is not enough, you can customize each controller by following these steps:
 
-1. Create your custom controller, for example a `Admins::SessionsController`:  
+1) Create your custom controller, for example a Admins::SessionsController:
 
-    ```ruby
-    class Admins::SessionsController < Devise::SessionsController
-    end
-    ```
+```ruby
+class Admins::SessionsController < Devise::SessionsController
+end
+```
 
-    Note that in the above example, the controller needs to be created in the `app/controller/admins/` directory.
+2) Tell the router to use this controller:
 
-2. Tell the router to use this controller:
+```ruby
+devise_for :admins, :controllers => { :sessions => "admins/sessions" }
+```
 
-    ```ruby
-    devise_for :admins, :controllers => { :sessions => "admins/sessions" }
-    ```
+3) And since we changed the controller, it won't use the "devise/sessions" views, so remember to copy "devise/sessions" to "admin/sessions".
 
-3. And since we changed the controller, it won't use the `"devise/sessions"` views, so remember to copy `"devise/sessions"` to `"admin/sessions"`.
-
-    Remember that Devise uses flash messages to let users know if sign in was successful or failed. Devise expects your application to call `"flash[:notice]"` and `"flash[:alert]"` as appropriate. Do not print the entire flash hash, print specific keys or at least remove the `:timedout` key from the hash as Devise adds this key in some circumstances, this key is not meant for display.
+Remember that Devise uses flash messages to let users know if sign in was successful or failed. Devise expects your application to call "flash[:notice]" and "flash[:alert]" as appropriate. Do not print the entire flash hash, print specific keys or at least remove the `:timedout` key from the hash as Devise adds this key in some circumstances, this key is not meant for display.
 
 ### Configuring routes
 
@@ -359,14 +331,12 @@ sign_out @user         # sign_out(resource)
 
 There are two things that is important to keep in mind:
 
-1. These helpers are not going to work for integration tests driven by Capybara or Webrat. They are meant to be used with functional tests only. Instead, fill in the form or explicitly set the user in session;
+1) These helpers are not going to work for integration tests driven by Capybara or Webrat. They are meant to be used with functional tests only. Instead, fill in the form or explicitly set the user in session;
 
-2. If you are testing Devise internal controllers or a controller that inherits from Devise's, you need to tell Devise which mapping should be used before a request. This is necessary because Devise gets this information from router, but since functional tests do not pass through the router, it needs to be told explicitly. For example, if you are testing the user scope, simply do:
+2) If you are testing Devise internal controllers or a controller that inherits from Devise's, you need to tell Devise which mapping should be used before a request. This is necessary because Devise gets this information from router, but since functional tests do not pass through the router, it needs to be told explicitly. For example, if you are testing the user scope, simply do:
 
-    ```ruby
     @request.env["devise.mapping"] = Devise.mappings[:user]
     get :new
-    ```
 
 ### Omniauth
 

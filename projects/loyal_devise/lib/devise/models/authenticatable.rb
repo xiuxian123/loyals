@@ -21,7 +21,7 @@ module Devise
     #     as key on authentication. This can also be a hash where the value is a boolean specifying
     #     if the value is required or not.
     #
-    #   * +http_authenticatable+: if this model allows http authentication. By default false.
+    #   * +http_authenticatable+: if this model allows http authentication. By default true.
     #     It also accepts an array specifying the strategies that should allow http.
     #
     #   * +params_authenticatable+: if this model allows authentication through request params. By default true.
@@ -243,7 +243,7 @@ module Devise
         end
 
         def find_first_by_auth_conditions(tainted_conditions, opts={})
-          to_adapter.find_first(devise_parameter_filter.filter(tainted_conditions).merge(opts))
+          to_adapter.find_first(devise_param_filter.filter(tainted_conditions).merge(opts))
         end
 
         # Find an initialize a record setting an error if it can't be found.
@@ -275,8 +275,8 @@ module Devise
 
         protected
 
-        def devise_parameter_filter
-          @devise_parameter_filter ||= Devise::ParameterFilter.new(case_insensitive_keys, strip_whitespace_keys)
+        def devise_param_filter
+          @devise_param_filter ||= Devise::ParamFilter.new(case_insensitive_keys, strip_whitespace_keys)
         end
 
         # Generate a token by looping and ensuring does not already exist.

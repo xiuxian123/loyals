@@ -93,7 +93,7 @@ module Devise
         self.confirmation_token = nil if reconfirmation_required?
         @reconfirmation_required = false
 
-        ensure_confirmation_token!
+        generate_confirmation_token! if self.confirmation_token.blank?
 
         opts = pending_reconfirmation? ? { :to => unconfirmed_email } : { }
         send_devise_notification(:confirmation_instructions, opts)
@@ -106,11 +106,6 @@ module Devise
           send_confirmation_instructions
         end
       end
-      
-      # Generate a confirmation token unless already exists and save the record.
-      def ensure_confirmation_token!
-        generate_confirmation_token! if should_generate_confirmation_token?
-      end 
 
       # Overwrites active_for_authentication? for confirmation
       # by verifying whether a user is active to sign in or not. If the user
@@ -144,9 +139,6 @@ module Devise
       end
 
       protected
-        def should_generate_confirmation_token?
-          confirmation_token.nil? || confirmation_period_expired?
-        end
 
         # A callback method used to deliver confirmation
         # instructions on creation. This can be overriden
@@ -235,17 +227,17 @@ module Devise
         end
 
         def postpone_email_change?
-          postpone = self.class.reconfirmable && email_changed? && !@bypass_postpone && !self.email.blank?
+          postpone = self.class.reconfirmable && email_changed? && !@bypass_postpone
           @bypass_postpone = false
           postpone
         end
 
         def reconfirmation_required?
-          self.class.reconfirmable && @reconfirmation_required && !self.email.blank?
+          self.class.reconfirmable && @reconfirmation_required
         end
 
         def send_confirmation_notification?
-          confirmation_required? && !@skip_confirmation_notification && !self.email.blank?
+          confirmation_required? && !@skip_confirmation_notification
         end
 
       module ClassMethods

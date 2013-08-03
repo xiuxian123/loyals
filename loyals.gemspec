@@ -20,10 +20,6 @@ Gem::Specification.new do |s|
   s.add_dependency "loyal_admin"
   s.add_dependency "loyal_passport"
 
-#  s.add_dependency "loyal_core"
-#  s.add_dependency "loyal_admin"
-#  s.add_dependency "loyal_passport"
-
   s.add_dependency "rails", "~> 4.0.0"
 
   s.add_development_dependency "sqlite3"

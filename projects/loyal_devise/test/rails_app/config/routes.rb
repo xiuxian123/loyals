@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
   # Resources for testing
   resources :users, :only => [:index] do
-    member do
-      get :expire
-      get :accept
-      get :edit_form
-      put :update_form
-    end
+    get :expire, :on => :member
+    get :accept, :on => :member
 
     authenticate do
       post :exhibit, :on => :member

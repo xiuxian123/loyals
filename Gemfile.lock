@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    loyals (0.0.1)
+    loyals (0.0.2)
       loyal_admin
       loyal_core
       loyal_passport
@@ -35,11 +35,12 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.0)
-    atomic (1.1.10)
+    atomic (1.1.11)
     awesome_nested_set (2.1.6)
       activerecord (>= 3.0.0)
     bcrypt-ruby (3.1.1)
     builder (3.1.4)
+    cancan (1.6.10)
     carrierwave (0.9.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -52,6 +53,8 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
+    loyal_acts_as_paranoid (0.0.3)
+      activerecord (~> 4.0.0)
     loyal_admin (0.0.3)
       loyal_core
       rails
@@ -60,23 +63,25 @@ GEM
       carrierwave
       coderay
       jquery-rails
+      loyal_acts_as_paranoid
       loyal_rails_kindeditor
       mini_magick
       nokogiri
       rails
       rails_config
       redcarpet
-    loyal_devise (2.1.7)
+    loyal_devise (2.1.10)
       bcrypt-ruby (~> 3.0)
       loyal_warden
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
-    loyal_passport (0.0.5)
+    loyal_passport (0.0.6)
+      cancan
       jquery-rails
       loyal_core
       loyal_devise
       rails
-    loyal_rails_kindeditor (0.0.8)
+    loyal_rails_kindeditor (0.0.9)
       carrierwave
       mini_magick
     loyal_warden (2.0.1)

@@ -2,6 +2,7 @@
 # rails config
 require "rails_config"
 require "nokogiri"
+require "loyal_acts_as_paranoid"
 # markdown and 语法高亮
 require 'redcarpet'
 require 'coderay'

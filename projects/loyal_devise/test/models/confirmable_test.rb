@@ -114,14 +114,6 @@ class ConfirmableTest < ActiveSupport::TestCase
     end
   end
 
-  test 'should not send confirmation when no email is provided' do
-    assert_email_not_sent do
-      user = new_user
-      user.email = ''
-      user.save(:validate => false)
-    end
-  end
-
   test 'should find a user to send confirmation instructions' do
     user = create_user
     confirmation_user = User.send_confirmation_instructions(:email => user.email)
@@ -294,24 +286,6 @@ class ConfirmableTest < ActiveSupport::TestCase
       assert_not_equal user.confirmation_token, old
     end
   end
-  
-  test 'should generate a new token when a valid one does not exist' do
-    swap Devise, :confirm_within => 3.days do
-      user = create_user
-      user.update_attribute(:confirmation_sent_at, 4.days.ago)
-      old = user.confirmation_token
-      user.ensure_confirmation_token!
-      assert_not_equal user.confirmation_token, old
-    end
-  end
-  
-  test 'should not generate a new token when a valid one exists' do
-    user = create_user
-    assert_not_nil user.confirmation_token
-    old = user.confirmation_token
-    user.ensure_confirmation_token!
-    assert_equal user.confirmation_token, old
-  end
 end
 
 class ReconfirmableTest < ActiveSupport::TestCase
@@ -360,15 +334,6 @@ class ReconfirmableTest < ActiveSupport::TestCase
     assert admin.confirm!
     assert_email_not_sent do
       assert admin.update_attributes(:password => 'newpass', :password_confirmation => 'newpass')
-    end
-  end
-
-  test 'should not send confirmation by email after changing to a blank email' do
-    admin = create_admin
-    assert admin.confirm!
-    assert_email_not_sent do
-      admin.email = ''
-      admin.save(:validate => false)
     end
   end
 
