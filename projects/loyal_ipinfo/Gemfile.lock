@@ -2,12 +2,10 @@ PATH
   remote: .
   specs:
     loyal_ipinfo (0.0.1)
-      bindata
 
 GEM
   remote: http://rubygems.org/
   specs:
-    bindata (1.5.0)
     diff-lcs (1.2.4)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)

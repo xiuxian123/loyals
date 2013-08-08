@@ -14,6 +14,4 @@ Gem::Specification.new do |s|
   s.description = "Description of LoyalIpinfo."
 
   s.files = Dir["{resources,app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-
-  s.add_dependency  'bindata'
 end
