@@ -3,6 +3,7 @@ require "protected_attributes"
 require "tiny_cache"
 # rails config
 require "rails_config"
+require 'dalli'
 require "nokogiri"
 require "loyal_acts_as_paranoid"
 # markdown and 语法高亮
@@ -16,6 +17,16 @@ require 'mini_magick'
 require 'awesome_nested_set'
 require "jquery-rails"
 require "loyal_rails_kindeditor"
+
+require 'sanitize'
+require 'mechanize'
+require 'rest-client'
+require 'kaminari'       # 分页插件
+
+# 图片上传
+require 'carrierwave'
+#  gem 'carrierwave-mongoid'
+require'mini_magick'
 
 module LoyalCore
   class Engine < ::Rails::Engine

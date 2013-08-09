@@ -4,8 +4,8 @@ require "devise/version"
 
 Gem::Specification.new do |s|
   s.name        = "loyal_devise"
-  # s.version     = Devise::VERSION.dup
-  s.version     = '2.1.10'
+  s.version     = Devise::VERSION.dup
+  # s.version     = '2.1.10'
   s.platform    = Gem::Platform::RUBY
   s.licenses    = ["MIT"]
   s.summary     = "Flexible authentication solution for Rails with Warden"
@@ -23,6 +23,8 @@ Gem::Specification.new do |s|
   # s.require_paths = ["lib"]
 
   s.add_dependency("loyal_warden")
+  s.add_dependency("omniauth")
+
   s.add_dependency("orm_adapter", "~> 0.1")
   s.add_dependency("bcrypt-ruby", "~> 3.0")
   s.add_dependency("railties", ">= 3.2.6", "< 5")

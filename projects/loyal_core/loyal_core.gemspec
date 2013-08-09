@@ -17,6 +17,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "protected_attributes"
 
+  # a memcached client
+  s.add_dependency  'dalli'
+
   # rails config
   s.add_dependency "rails_config"
 
@@ -37,7 +40,16 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
   s.add_dependency "tiny_cache"
 
-  # s.add_dependency "loyal_admin"
+  s.add_dependency 'sanitize'
+  s.add_dependency 'mechanize'
+  s.add_dependency 'rest-client'
+  s.add_dependency 'kaminari'       # 分页插件
+
+  # 图片上传
+  s.add_dependency 'carrierwave'
+  #  gem 'carrierwave-mongoid'
+  s.add_dependency 'mini_magick'
+
   s.add_dependency "loyal_rails_kindeditor"
   s.add_dependency "loyal_acts_as_paranoid"
   s.add_dependency "loyal_simple_captcha"
