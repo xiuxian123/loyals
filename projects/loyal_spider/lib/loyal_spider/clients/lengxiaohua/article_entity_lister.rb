@@ -95,8 +95,6 @@ module LoyalSpider
             end
           end
 
-          debugger
-
         end
 
         def after_fetch_fail result
