@@ -39,6 +39,10 @@ module LoyalSpider
         self.class.entity_lister_options[:url_format_options]
       end
 
+      def entities
+        @entities ||= []
+      end
+
       def current_page
         @current_page ||= 1
       end
