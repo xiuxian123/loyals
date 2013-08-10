@@ -11,6 +11,16 @@ module LoyalSpider
         attr_accessor :down_rating     # 差评数目
         attr_accessor :comments_count  # 评论数目
         attr_accessor :authors_text    # 抓取的作者信息
+
+        include InstanceMethods
+      end
+    end
+
+    module InstanceMethods
+      def initialize attrs={}
+        attrs.each do |key, value|
+          self.send(:"#{key}=", value)
+        end
       end
     end
 

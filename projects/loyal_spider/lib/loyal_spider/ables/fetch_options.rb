@@ -7,9 +7,11 @@ module LoyalSpider
     attr_accessor :encoding_type      # 编码
     attr_accessor :headers            # 请求头
     attr_accessor :url                # url
+    attr_accessor :base_url           # base_url
 
     def initialize attrs={}
       @url           = attrs[:url]       || ''
+      @base_url      = attrs[:base_url]  || ''
       @method        = attrs[:method]    || :get
       @timeout       = attrs[:timeout]   || 60  #  单位秒
       @open_timeout  = attrs[:open_time] || @timeout

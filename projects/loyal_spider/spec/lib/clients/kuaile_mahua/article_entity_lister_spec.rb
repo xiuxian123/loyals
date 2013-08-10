@@ -18,11 +18,32 @@ module LoyalSpider
             the_clazz.new.is_a?(the_clazz)
           end
 
-          it 'fetch' do
-            entity = the_clazz.new
+          # it 'paged fetch' do
+          #   entity = the_clazz.new
 
-            result = entity.fetch
+          #   result = entity.paged_fetch 2
+          #   result.fetch_options.url.should == 'http://www.kl688.com/newjokes/index_2.htm'
+          # end
+
+          it 'class paged fetch' do
+            result = the_clazz.paged_fetch 2
+
+debugger
+
+            result.fetch_options.url.should == 'http://www.kl688.com/newjokes/index_2.htm'
           end
+
+
+          # it 'fetch' do
+          #   entity = the_clazz.new
+
+          #   result = entity.fetch
+          # end
+
+          # it 'class fetch' do
+          #   result = the_clazz.fetch
+          # end
+
         end
       end
     end

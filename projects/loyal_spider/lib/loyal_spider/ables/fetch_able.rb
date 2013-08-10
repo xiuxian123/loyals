@@ -21,24 +21,27 @@ module LoyalSpider
         @default_fetch_options ||= {}
       end
 
+      def fetch options={}, &block
+        self.new.fetch options, &block
+      end
     end
 
     module InstanceMethods
       def fetch options={}, &block
-        before_fetch options
+        self._before_fetch options if self.respond_to?(:_before_fetch, true)
+        self.before_fetch options if self.respond_to?(:before_fetch, true)
+
         result = _perform_fetch options, &block
 
         if result.success?
           self.after_fetch_success(result) if self.respond_to?(:after_fetch_success, true)
+          self._after_fetch_success(result) if self.respond_to?(:_after_fetch_success, true)
         else
           self.after_fetch_fail(result) if self.respond_to?(:after_fetch_fail, true)
+          self._after_fetch_fail(result) if self.respond_to?(:_after_fetch_fail, true)
         end
 
         result
-      end
-
-      def before_fetch options={}
-
       end
 
       private
@@ -112,8 +115,6 @@ module LoyalSpider
           if block_given?
             block.call _result, &_block
           end
-
-          debugger
 
           _result
 

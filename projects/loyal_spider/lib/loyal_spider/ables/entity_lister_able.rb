@@ -7,6 +7,7 @@ module LoyalSpider
       base.class_eval do
         attr_writer :current_page        # current_page
 
+        include ::LoyalSpider::FetchAble
         include InstanceMethods
         extend  ClassMethods
       end
@@ -19,14 +20,34 @@ module LoyalSpider
       #   - url_format_options
       def config_loyal_spider_entity_lister options={}
         @entity_lister_options ||= options
+
+        self.config_loyal_spider_default_fetch_options(
+          self.entity_lister_options.delete(:fetch_options) || {}
+        )
+      end
+
+      def paged_fetch page, options={}, &block
+        lister = self.new
+        lister.current_page = page
+        lister.fetch options, &block
       end
 
       def entity_lister_options
         @entity_lister_options ||= {}
       end
+
+      # 按页抓取
+      def paged_fetch page, options={}, &block
+        self.new.paged_fetch page, options, &block
+      end
     end
 
     module InstanceMethods
+      def paged_fetch page, options={}, &block
+        self.current_page = page
+        self.fetch options, &block
+      end
+
       def url_format
         self.class.entity_lister_options[:url_format]
       end
@@ -39,8 +60,25 @@ module LoyalSpider
         self.class.entity_lister_options[:url_format_options]
       end
 
+      def _before_fetch options={}
+        @entities = []
+      end
+
+      def _after_fetch_success result
+        result.entities = self.entities
+      end
+
       def entities
         @entities ||= []
+      end
+
+      # TODO
+      def entity_clazz
+        self.class.entity_lister_options[:entity_clazz]
+      end
+
+      def add_entity attrs={}
+        self.entities << self.entity_clazz.new(attrs) if self.entity_clazz
       end
 
       def current_page
