@@ -44,20 +44,25 @@ module LoyalSpider
 
     module InstanceMethods
       def paged_fetch page, options={}, &block
+
+        self.url_format_options.merge!(
+          options[:url_format_options] || {}
+        )
+
         self.current_page = page
         self.fetch options, &block
       end
 
       def url_format
-        self.class.entity_lister_options[:url_format]
+        @url_format ||= self.class.entity_lister_options[:url_format]
       end
 
       def url_format_first
-        self.class.entity_lister_options[:url_format_first]
+        @url_format_first ||= self.class.entity_lister_options[:url_format_first]
       end
 
       def url_format_options
-        self.class.entity_lister_options[:url_format_options]
+        @url_format_options ||= (self.class.entity_lister_options[:url_format_options] || {})
       end
 
       def _before_fetch options={}

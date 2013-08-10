@@ -13,10 +13,6 @@ module LoyalSpider
             :base_url => 'http://lengxiaohua.com'
           }
 
-        def entity_clazz
-          ::LoyalSpider::Clients::Lengxiaohua::ArticleEntity
-        end
-
         # TODO:
         def before_fetch options={}
           puts "before_fetch: #{options}"
@@ -84,9 +80,9 @@ module LoyalSpider
 
             _tool_doc = entity_doc.css('.para_tool')
 
-            _entity_attr[:up_rating]      = _tool_doc.css('a[report=like_joke] span').last.text.to_i
-            _entity_attr[:down_rating]    = _tool_doc.css('a[report=unlike_joke] span').last.text.to_i
-            _entity_attr[:comments_count] = _tool_doc.css("#show_comment_count_#{_joke_id}").text.to_i
+            _entity_attr[:up_rating]      = _tool_doc.css('a[report=like_joke] span').last.text.gsub(/\W/, '').to_i
+            _entity_attr[:down_rating]    = _tool_doc.css('a[report=unlike_joke] span').last.text.gsub(/\W/, '').to_i
+            _entity_attr[:comments_count] = _tool_doc.css("#show_comment_count_#{_joke_id}").text.gsub(/\W/, '').to_i
 
             _entity = self.new_entity(_entity_attr)
 

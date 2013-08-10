@@ -13,10 +13,6 @@ module LoyalSpider
             :base_url => 'http://www.kl688.com'
           }
 
-        def entity_clazz
-          ::LoyalSpider::Clients::KuaileMahua::ArticleEntity
-        end
-
         # TODO:
         def before_fetch options={}
           puts "before_fetch: #{options}"
