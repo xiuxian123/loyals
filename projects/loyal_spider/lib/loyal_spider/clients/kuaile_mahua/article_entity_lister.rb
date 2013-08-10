@@ -30,9 +30,44 @@ module LoyalSpider
           html_doc.css('.main .main-left .xiaohua').each do |entity_doc|
             _entity_attr = {}
 
+            _fetch_options = result.fetch_options
+            _base_url      = _fetch_options.base_url.to_s.strip
+
             _title_link = entity_doc.css('h3 a').first
 
+            # :content         # 正文
+            # :tags            # 标签
+            # :tags_text       # 标签
+            # :up_rating       # 好评数
+            # :down_rating     # 差评数目
+            # :comments_count  # 评论数目
+            # :authors         # 抓取的作者信息
+
+            _entity_attr[:url]   = "#{_base_url}#{_title_link.attr('href').to_s.strip}"
+
             _entity_attr[:title] = _title_link.text
+            _entity_attr[:content] = entity_doc.css('.content').inner_html
+            _entity_attr[:tags] = entity_doc.css('.link .tags h4 a').map do |_tag_doc|
+              {
+                :text => _tag_doc.text.to_s.strip,
+                :href => "#{_base_url}#{_tag_doc.attr('href').to_s.strip}"
+              }
+            end
+
+            _entity_attr[:tags_text] = _entity_attr[:tags].map do |_tag|
+              _tag[:text]
+            end
+
+            _entity_attr[:authors] = entity_doc.css('.link .tags .pusher a').map do |_author_doc|
+              {
+                :text => _author_doc.text.to_s.strip,
+                :href => "#{_author_doc.attr('href').to_s.strip}"
+              }
+            end
+
+            _entity_attr[:up_rating]      = entity_doc.css('.tools li a.good').text.to_i
+            _entity_attr[:down_rating]    = entity_doc.css('.tools li a.bad').text.to_i
+            _entity_attr[:comments_count] = entity_doc.css('.tools li s').first.text.to_i
 
             add_entity _entity_attr
           end

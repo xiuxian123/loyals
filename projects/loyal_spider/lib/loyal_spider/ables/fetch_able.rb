@@ -27,6 +27,10 @@ module LoyalSpider
     end
 
     module InstanceMethods
+      def base_url
+        self.fetch_options.base_url
+      end
+
       def fetch options={}, &block
         self._before_fetch options if self.respond_to?(:_before_fetch, true)
         self.before_fetch options if self.respond_to?(:before_fetch, true)

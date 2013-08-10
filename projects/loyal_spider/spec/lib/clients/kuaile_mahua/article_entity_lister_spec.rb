@@ -28,8 +28,6 @@ module LoyalSpider
           it 'class paged fetch' do
             result = the_clazz.paged_fetch 2
 
-debugger
-
             result.fetch_options.url.should == 'http://www.kl688.com/newjokes/index_2.htm'
           end
 
