@@ -15,6 +15,17 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{spec app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rspec"
+
+  s.add_dependency 'rest-client'
+  s.add_dependency 'sanitize'
+
+  # rails config
+  s.add_dependency "rails_config"
+
+  s.add_dependency "nokogiri"
+
   # s.add_dependency "rails", "~> 4.0.0"
 
   # s.add_development_dependency "sqlite3"
