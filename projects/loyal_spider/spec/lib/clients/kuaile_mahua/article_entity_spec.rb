@@ -18,11 +18,11 @@ module LoyalSpider
             the_clazz.new.is_a?(the_clazz)
           end
 
-          it 'fetch a url' do
-            entity = the_clazz.new
-            entity.url = 'http://www.kl688.com/xiaohua/213134.htm'
-            result = entity.fetch
-          end
+          # it 'fetch a url' do
+          #   entity = the_clazz.new
+          #   entity.url = 'http://www.kl688.com/xiaohua/213134.htm'
+          #   result = entity.fetch
+          # end
         end
       end
     end

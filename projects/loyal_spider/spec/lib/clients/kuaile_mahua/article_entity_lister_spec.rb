@@ -26,9 +26,10 @@ module LoyalSpider
           # end
 
           it 'class paged fetch' do
-            result = the_clazz.paged_fetch 2
+            result = the_clazz.paged_fetch 1
 
-            result.fetch_options.url.should == 'http://www.kl688.com/newjokes/index_2.htm'
+            # result.fetch_options.url.should == 'http://www.kl688.com/newjokes/index_2.htm'
+            result.fetch_options.url.should == 'http://www.kl688.com/'
           end
 
 

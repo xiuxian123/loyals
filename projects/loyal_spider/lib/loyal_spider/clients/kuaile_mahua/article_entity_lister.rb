@@ -69,8 +69,18 @@ module LoyalSpider
             _entity_attr[:down_rating]    = entity_doc.css('.tools li a.bad').text.to_i
             _entity_attr[:comments_count] = entity_doc.css('.tools li s').first.text.to_i
 
-            add_entity _entity_attr
+            _entity = self.new_entity(_entity_attr)
+
+            if entity_doc.css('.content .more a').any?
+              _entity.fetch
+            end
+
+            if _entity.valid?
+              self.add_entity _entity
+            end
           end
+
+          debugger
         end
 
         def after_fetch_fail result

@@ -40,8 +40,11 @@ module LoyalSpider
           self.up_rating      = entity_doc.css('.tools li a.good').text.to_i
           self.down_rating    = entity_doc.css('.tools li a.bad').text.to_i
           self.comments_count = entity_doc.css('.tools li s').first.text.to_i
-debugger
 
+        end
+
+        def valid?
+          self.content.to_s.strip.size > 0
         end
 
       end

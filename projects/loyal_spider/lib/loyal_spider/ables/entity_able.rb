@@ -25,6 +25,10 @@ module LoyalSpider
           self.send(:"#{key}=", value)
         end
       end
+
+      def valid?
+        true
+      end
     end
 
   end

@@ -77,8 +77,14 @@ module LoyalSpider
         self.class.entity_lister_options[:entity_clazz]
       end
 
-      def add_entity attrs={}
-        self.entities << self.entity_clazz.new(attrs) if self.entity_clazz
+      def new_entity attrs={}
+        if self.entity_clazz
+          self.entity_clazz.new(attrs) 
+        end
+      end
+
+      def add_entity entity
+        self.entities << entity
       end
 
       def current_page
