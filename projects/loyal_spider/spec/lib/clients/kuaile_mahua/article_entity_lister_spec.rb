@@ -22,8 +22,6 @@ module LoyalSpider
             entity = the_clazz.new
 
             result = entity.fetch
-
-puts result.response
           end
         end
       end

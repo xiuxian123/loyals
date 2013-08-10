@@ -9,6 +9,7 @@ module LoyalSpider
     attr_accessor :response_result
     attr_accessor :fetch_options
     attr_accessor :url
+    attr_accessor :exception
 
     def initialize attrs={}
       attrs.each do |key, value|
@@ -16,8 +17,16 @@ module LoyalSpider
       end
     end
 
+    def success?
+      self.response_status == :success
+    end
+
+    def fail?
+      !success?
+    end
+
     def response_html
-      @response_html ||= Nokogiri::HTML.parse(self.response)
+      @response_html ||= Nokogiri::HTML.parse(self.response) if self.response
     end
 
   end
