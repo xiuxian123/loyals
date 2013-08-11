@@ -54,6 +54,9 @@ Gem::Specification.new do |s|
   s.add_dependency "loyal_acts_as_paranoid"
   s.add_dependency "loyal_simple_captcha"
 
+  # 标签
+  s.add_dependency 'acts-as-taggable-on'
+
   s.add_dependency "rails"
 
   s.add_development_dependency "sqlite3"

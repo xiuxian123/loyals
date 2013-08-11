@@ -26,7 +26,9 @@ require 'kaminari'       # 分页插件
 # 图片上传
 require 'carrierwave'
 #  gem 'carrierwave-mongoid'
-require'mini_magick'
+require 'mini_magick'
+
+require 'acts-as-taggable-on'
 
 module LoyalCore
   class Engine < ::Rails::Engine
