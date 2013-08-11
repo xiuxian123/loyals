@@ -43,10 +43,6 @@ module LoyalSpider
 
         end
 
-        def valid?
-          self.content.to_s.strip.size > 0
-        end
-
       end
     end
   end

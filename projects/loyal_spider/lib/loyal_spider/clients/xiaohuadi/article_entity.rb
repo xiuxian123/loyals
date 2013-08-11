@@ -11,10 +11,6 @@ module LoyalSpider
           :base_url => 'http://www.xiaohuadi.com'
         )
 
-        def valid?
-          true
-        end
-
         # TODO
         def after_fetch_success result
           # puts "after_fetch success: #{result}"

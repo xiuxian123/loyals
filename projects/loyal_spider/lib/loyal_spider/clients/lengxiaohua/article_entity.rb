@@ -11,10 +11,6 @@ module LoyalSpider
         #   :base_url => 'http://lengxiaohua.com'
         # )
 
-        def valid?
-          true
-        end
-
       end
     end
   end

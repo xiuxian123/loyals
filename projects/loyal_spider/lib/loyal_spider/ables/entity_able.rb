@@ -14,6 +14,8 @@ module LoyalSpider
         attr_accessor :comments_count  # 评论数目
         attr_accessor :authors         # 抓取的作者信息
         attr_accessor :authors_text    # 抓取的作者信息
+        attr_accessor :publish_time    # 发布时间
+        attr_accessor :errors          # 错误
 
         include InstanceMethods
       end
@@ -24,11 +26,31 @@ module LoyalSpider
         attrs.each do |key, value|
           self.send(:"#{key}=", value)
         end
+
+        self.errors = {}
       end
 
       def valid?
-        true
+        self.valid!
+        self.errors.empty?
       end
+
+      def valid!
+        unless self.content.to_s.strip.size > 0
+          add_error :content, '不能为空'
+        end
+
+        unless self.url.to_s.strip.size > 0
+          add_error :url, '不能为空'
+        end
+      end
+
+      private
+
+      def add_error field, message
+        (self.errors[field] ||= []) << message
+      end
+      
     end
 
   end

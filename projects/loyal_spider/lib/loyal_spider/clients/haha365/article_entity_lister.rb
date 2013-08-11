@@ -1,16 +1,16 @@
 # -*- encoding : utf-8 -*-
 module LoyalSpider
   module Clients
-    module Xiaohuadi
+    module Haha365
       class ArticleEntityLister
         include ::LoyalSpider::EntityListerAble
 
-        self.config_loyal_spider_entity_lister :url_format_first => 'http://www.xiaohuadi.com/%{category}/',
-          :url_format => 'http://www.xiaohuadi.com/%{category}/index_%{page}.html',
-          :entity_clazz => ::LoyalSpider::Clients::Xiaohuadi::ArticleEntity,
+        self.config_loyal_spider_entity_lister :url_format_first => 'http://www.haha365.com/%{category}/',
+          :url_format => 'http://www.haha365.com/%{category}/index_%{page}.htm',
+          :entity_clazz => ::LoyalSpider::Clients::Haha365::ArticleEntity,
           :fetch_options => {
             :encoding_type => 'GBK',
-            :base_url => 'http://www.xiaohuadi.com'
+            :base_url => 'http://www.haha365.com'
           }
 
         # TODO:
@@ -23,11 +23,7 @@ module LoyalSpider
           # puts "after_fetch success: #{result}"
           html_doc = result.response_html_doc
 
-          html_doc.css('.ilistxllist>ul').each do |entity_doc|
-            _entity_attr = {}
-
-            _fetch_options = result.fetch_options
-            _base_url      = _fetch_options.base_url.to_s.strip
+          _doc = html_doc.css('html #main .content .left .r_c .cat_llb')
 
             # :content         # 正文
             # :tags            # 标签
@@ -37,21 +33,23 @@ module LoyalSpider
             # :comments_count  # 评论数目
             # :authors         # 抓取的作者信息
 
-            _link_doc = entity_doc.css('.ilistxlctlB1 a')
+          (0...(_doc.css('.fl a').size)).each do |_index|
 
-            _entity_attr[:url] = "#{_base_url}#{_link_doc.attr('href')}"
+            _title_doc    = _doc.css('h3 a')[_index]
+            _content_doc  = _doc.css('#endtext')[_index]
+            _category_doc = _doc.css('.fl a')[_index]
 
-            _entity_attr[:title] = "#{_link_doc.text}"
+            _entity_attr = {}
 
-            _text_content = entity_doc.css('.ilistxlctlB2').first.inner_html
+            _text_content = _content_doc.css('p').inner_html
 
             _content = _text_content.split("<br>\r\n").map do |_cnt|
-              "<p>#{Sanitize.clean _cnt}</p>"
+              "<p>#{(Sanitize.clean _cnt).to_s.strip}</p>"
             end.join('')
 
             _entity_attr[:content] = _content
 
-            _category_doc = entity_doc.css('.ilistxlctlC table td a').last
+            _entity_attr[:url] = "#{self.base_url}#{_title_doc.attr('href')}"
 
             if _category_doc
               _entity_attr[:tags] = [
@@ -70,24 +68,18 @@ module LoyalSpider
 
             _entity_attr[:authors] = []
 
-            _tool_doc = entity_doc.css('.ilistxlctlA ul li')
-
-            _entity_attr[:up_rating]      = _tool_doc[1].text.to_i
-            _entity_attr[:down_rating]    = _tool_doc[2].text.to_i
-            _entity_attr[:comments_count] = _tool_doc[0].text.to_i
+            _entity_attr[:up_rating]      = -1
+            _entity_attr[:down_rating]    = -1
+            _entity_attr[:comments_count] = -1
 
             _entity = self.new_entity(_entity_attr)
-
-            if _entity.content.include?('未显示完，查看全文')
-              _entity.fetch
-            end
 
             if _entity.valid?
               self.add_entity _entity
             end
           end
 
-          # debugger
+          debugger
         end
 
         def after_fetch_fail result
