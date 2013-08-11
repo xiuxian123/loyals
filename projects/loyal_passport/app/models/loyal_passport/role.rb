@@ -2,6 +2,7 @@
 class LoyalPassport::Role < ActiveRecord::Base
   include ::Concerns::LoyalPassport::HomeworksAble
 
+  # FIXME:
   attr_accessible :permalink, :name, :instroduction, :description, :user_ids
 
   self.acts_as_tiny_cached

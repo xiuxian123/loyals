@@ -22,7 +22,7 @@ module LoyalPassport::Controllers
 
       def devise_parameter_sanitizer
         if resource_class == ::User
-          ::LoyalPassport::User::ParameterSanitizer.new(::User, :user, params)
+          ::LoyalPassport::UserParameterSanitizer.new(::User, :user, params)
         else
           super # Use the default one
         end

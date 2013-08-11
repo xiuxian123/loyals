@@ -17,9 +17,7 @@ module LoyalPassport
   autoload :DeviseHelper,         'loyal_passport/devise_helper'
   autoload :UtilHelper,           'loyal_passport/util_helper'
 
-  module User
-    autoload :ParameterSanitizer, 'loyal_passport/user_parameter_sanitizer'
-  end
+  autoload :UserParameterSanitizer, 'loyal_passport/user_parameter_sanitizer'
 end
 
 I18n.load_path += Dir[Pathname.new(__FILE__).join('..', '..', 'config', 'locales', '**', '*.{rb,yml}').to_s]

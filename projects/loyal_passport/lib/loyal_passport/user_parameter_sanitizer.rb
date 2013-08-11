@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-class ::LoyalPassport::User::ParameterSanitizer < Devise::ParameterSanitizer
+class ::LoyalPassport::UserParameterSanitizer < Devise::ParameterSanitizer
   def sign_in
     default_params.permit(*(
       auth_keys + [
