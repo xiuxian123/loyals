@@ -22,12 +22,21 @@ module LoyalCore
 
           # space 格式要求正确
           validates_format_of :space, :with => PERMALINK_REGEXP, :multiline => true
-          validates_uniqueness_of field_name, :uniqueness => {:scope => [:space]}
+
+          if options[:paranoid]
+            self.validates_uniqueness_of_without_deleted field_name, :scope => [:space]
+          else
+            validates_uniqueness_of field_name, :uniqueness => {:scope => [:space]}
+          end
         else
           validates_format_of  field_name, :with => PERMALINK_REGEXP, :multiline => true
           validates_presence_of  field_name
 
-          validates_uniqueness_of field_name
+          if options[:paranoid]
+            self.validates_uniqueness_of_without_deleted field_name
+          else
+            validates_uniqueness_of field_name
+          end
         end
       end
 

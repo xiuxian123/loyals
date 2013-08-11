@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    loyal_core (0.0.9)
+    loyal_core (0.0.10)
       acts-as-taggable-on
       awesome_nested_set
       carrierwave
