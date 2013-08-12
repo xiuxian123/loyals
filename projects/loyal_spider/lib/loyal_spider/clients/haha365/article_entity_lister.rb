@@ -51,6 +51,7 @@ module LoyalSpider
             _entity_attr[:content] = _content
 
             _entity_attr[:url] = "#{self.base_url}#{_title_doc.attr('href')}"
+            _entity_attr[:title] = "#{_title_doc.text}"
 
             if _category_doc
               _entity_attr[:tags] = [
