@@ -64,10 +64,6 @@ module LoyalSpider
               _entity_attr[:tags] = []
             end
 
-            _entity_attr[:tags_text] = _entity_attr[:tags].map do |_tag|
-              _tag[:text]
-            end
-
             _entity_attr[:authors] = []
 
             _tool_doc = entity_doc.css('.ilistxlctlA ul li')

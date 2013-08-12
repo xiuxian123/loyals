@@ -52,10 +52,6 @@ module LoyalSpider
             self.tags = []
           end
 
-          self.tags_text = self.tags.map do |_tag|
-            _tag[:text]
-          end
-
           self.authors = []
 
           self.up_rating      = -1
