@@ -40,11 +40,15 @@ module LoyalSpider
             _content_doc  = _basic_doc.css('.cat_llb #endtext')[_index]
             _category_doc = _basic_doc.css('.cat_llb .fl a')[_index]
 
+            if _title_doc.nil? || _content_doc.nil? || _category_doc.nil?
+              next
+            end
+
             _entity_attr = {}
 
-            _text_content = _content_doc.inner_html
+            _text_content = _content_doc.try :inner_html
 
-            _content = _text_content.split("<br>\r\n").map do |_cnt|
+            _content = _text_content.to_s.split("<br>\r\n").map do |_cnt|
               "<p>#{(Sanitize.clean _cnt).to_s.strip}</p>"
             end.join('')
 

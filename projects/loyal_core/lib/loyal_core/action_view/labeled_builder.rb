@@ -13,7 +13,7 @@ module LoyalCore::ActionView
       )
     end
 
-    %w[kindeditor url_field text_field text_area password_field collection_select].each do |method_name|
+    %w[kindeditor number_field url_field text_field text_area password_field collection_select].each do |method_name|
       define_method method_name do |name, *args|
         @template.content_tag :div, class: "field" do
           (field_label name, *args) + @template.tag(:br) + super(name, *args)
@@ -70,6 +70,12 @@ module LoyalCore::ActionView
             :disable_with => I18n.t('loyal_core.action_view.form_builder.submit.disable_with')
           }
       )
+    end
+
+    def labeled_check_box(name, *args)
+      @template.content_tag :div, class: 'field' do
+        check_box(name, *args) + ' ' + field_label(name, *args)
+      end
     end
 
     # def check_box(name, *args)
