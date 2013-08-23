@@ -36,6 +36,21 @@ module LoyalSpider
         @tags_array ||= self.tags.map{|_tag| _tag[:text] }
       end
 
+      # 图片
+      def images
+        @images ||= Nokogiri::HTML.parse(self.content).css('img').map do |img_doc|
+          {
+            :src => img_doc.attr('src'),
+            :title => img_doc.attr('title'),
+            :alt   => img_doc.attr('alt')
+          }
+        end
+      end
+
+      def images?
+        self.images.any?
+      end
+
       def authors
         @authors ||= []
       end

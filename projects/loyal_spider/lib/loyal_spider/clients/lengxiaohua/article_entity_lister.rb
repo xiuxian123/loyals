@@ -49,10 +49,10 @@ module LoyalSpider
               "<p>#{_cnt}</p>"
             end.join('')
 
-            if _img_box = entity_doc.css('.default_load_imgbox')
+            if _img_box = entity_doc.css('.default_load_imgbox').first
 
-              _image_content = _img_box.first.css('img').map do |_img|
-                "<img src='#{_img.attr('data-original').gsub('!water', '')}'/>"
+              _image_content = _img_box.css('img').map do |_img|
+                "<img src='#{_img.attr('data-original').to_s.gsub('!water', '')}'/>"
               end
 
               _content = _content + "<p>#{_image_content.join('')}</p>" if _image_content.any?
@@ -67,11 +67,19 @@ module LoyalSpider
               }
             end
 
-            _entity_attr[:authors] = entity_doc.css('.user_info a').map do |_author_doc|
-              {
-                :text => _author_doc.text.to_s.strip,
-                :href => "#{self.base_url}#{_author_doc.attr('href').to_s.strip}"
-              }
+            # debugger
+
+            _author_doc = entity_doc.css('.para_info .user_info a').first
+
+            if _author_doc
+              _entity_attr[:authors] = [
+                {
+                  :text => _author_doc.text.to_s.strip,
+                  :href => "#{self.base_url}#{_author_doc.attr('href').to_s.strip}"
+                }
+              ]
+            else
+              _entity_attr[:authors] = []
             end
 
             _tool_doc = entity_doc.css('.para_tool')
