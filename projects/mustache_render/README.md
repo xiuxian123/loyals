@@ -15,3 +15,10 @@ This project rocks and uses MIT-LICENSE.
   <%= mustache_render 'name:{{name}} age:{{age}}', {:name => 'render?', :age => 12} %>
 ```
 
+## in other
+
+```
+require 'mustache_render'
+MustacheRender::Mustache.render "Hi! {{name}}", {:name => 'happy!'}
+```
+
