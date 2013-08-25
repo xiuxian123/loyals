@@ -9,8 +9,19 @@ module LoyalCore
     include ::LoyalCore::Ajax::LikeTracksHelper
     include ::LoyalCore::FontSelectorHelper
 
-    
+    def link_to_loyal_current yes_no, name, url, options={}
+      current_options = options.dup
+      current_options[:class] ||= ""
 
+      unless current_options[:class].include?('current')
+        current_options[:class] << ' ' if current_options[:class].present?
+        current_options[:class] << 'current'
+      end
+
+      link_to_if yes_no, name, url, current_options do
+        link_to name, url, options
+      end
+    end
 
     def render_new_simple_captcha_partial options={}
       render :partial => '/loyal_core/ajax/captchas/new', :locals => {

@@ -45,6 +45,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rest-client'
   s.add_dependency 'kaminari'       # 分页插件
 
+  # s.add_dependency 'classifier'     # 归类
+
   # 图片上传
   s.add_dependency 'carrierwave'
   #  gem 'carrierwave-mongoid'

@@ -68,10 +68,16 @@ a {
   color: #9B8878;
   text-decoration: none;
 }
+
+a.current {
+  background-color: yellow;
+}
+
 a:hover {
   color: red !important;
   background-color: yellow;
 }
+
 .clearfix:after {
   clear: both;
   content: ".";
