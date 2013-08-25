@@ -17,6 +17,8 @@ module LoyalCore
   autoload :ActsAsSkinDishAble,         "#{File.dirname(__FILE__)}/acts/skin_dish_able"
 
   autoload :ActsAsCreatorAble,          "#{File.dirname(__FILE__)}/acts/creator_able"
+
+  autoload :ActsAsPublishStatusAble,    "#{File.dirname(__FILE__)}/acts/publish_status_able"
 end
 
 if defined?(ActiveRecord::Base)
@@ -36,4 +38,5 @@ if defined?(ActiveRecord::Base)
   ::ActiveRecord::Base.send :include, ::LoyalCore::ActsAsSkinDishAble
 
   ::ActiveRecord::Base.send :include, ::LoyalCore::ActsAsCreatorAble
+  ::ActiveRecord::Base.send :include, ::LoyalCore::ActsAsPublishStatusAble
 end
