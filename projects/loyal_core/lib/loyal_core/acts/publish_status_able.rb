@@ -36,6 +36,10 @@ module LoyalCore
           end
         end
 
+        scope :published, -> do
+          of_publish_status('published')
+        end
+
         include InstanceMethods
       end
 

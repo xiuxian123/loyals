@@ -50,7 +50,7 @@ module LoyalCore
           worker_class.content_mode_config
         end
 
-        delegate :words_amount_more?, :content=, :content, :content_text, :words_amount,
+        delegate :content=, :content, :content_text, :words_amount, :words_amount_more?,
           :content_code=, :content_code,
           :content_mode, :content_mode=,
 
