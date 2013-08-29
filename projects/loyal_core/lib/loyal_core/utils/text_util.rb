@@ -15,7 +15,7 @@ module LoyalCore
         doc.search("//pre").each do |pre|
           lang = pre.attr('lang')
 
-          if lang.blank?
+          if lang
             _lang_class = pre.attr('class').to_s.split(' ').select {|_itm| _itm.include?('lang-') }.first
 
             if _lang_class
@@ -24,11 +24,11 @@ module LoyalCore
           end
 
           # debugger
-          if (pre_code=pre.css('code')).any?
+          if pre_code=pre.css('code')
             lang = pre_code.attr('class').to_s
           end
 
-          if lang.blank?
+          unless lang
             lang = :text
           end
 
@@ -37,11 +37,11 @@ module LoyalCore
           begin
             pre.replace ::CodeRay.scan(text, lang).div.to_s
           rescue Exception => error
-            Rails.logger.debug "#{__FILE__} syntax_highlighter error: \ntext => #{text} \nlang => #{lang}\n origin error:#{error}"
+            puts "#{__FILE__} syntax_highlighter error: \ntext => #{text} \nlang => #{lang}\n origin error:#{error}"
           end
         end
 
-        doc.css('body').try(:inner_html).to_s
+        doc.css('body').inner_html.to_s
       end
     end
   end

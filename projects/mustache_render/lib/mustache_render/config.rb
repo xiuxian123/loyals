@@ -3,6 +3,10 @@ module MustacheRender
   class << self
     attr_accessor :config
 
+    def config
+      @config ||= Config.new
+    end
+
     def configure
       yield self.config ||= Config.new
     end
