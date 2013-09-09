@@ -26,10 +26,6 @@ module LoyalSpider
             }
           end
 
-          self.tags_text = self.tags.map do |_tag|
-            _tag[:text]
-          end
-
           self.authors = entity_doc.css('.link .tags .pusher a').map do |_author_doc|
             {
               :text => _author_doc.text.to_s.strip,

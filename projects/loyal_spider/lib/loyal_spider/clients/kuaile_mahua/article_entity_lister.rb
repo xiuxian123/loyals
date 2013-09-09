@@ -33,7 +33,6 @@ module LoyalSpider
 
             # :content         # 正文
             # :tags            # 标签
-            # :tags_text       # 标签
             # :up_rating       # 好评数
             # :down_rating     # 差评数目
             # :comments_count  # 评论数目
