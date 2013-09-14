@@ -52,7 +52,7 @@ module LoyalPassport::Controllers
       end
 
       # 渲染返回的隐藏域
-      def util_output_return_to_hidden_field_tag value=request.url
+      def util_output_return_to_hidden_field_tag value=request.referer
         hidden_field_tag :return_to, params[:return_to] || value, :id => nil
       end
     end

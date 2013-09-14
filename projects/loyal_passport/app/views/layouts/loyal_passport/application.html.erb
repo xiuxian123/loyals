@@ -4,7 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title><%= I18n.t('loyal_passport.name') %></title>
 <%= stylesheet_link_tag    "loyal_passport/application", :media => "all" %>
+<%= yield :stylesheets_header %>
 <%= javascript_include_tag "loyal_passport/application" %>
+<%= yield :javascripts_header %>
 <%= csrf_meta_tags %>
 </head>
 <body>

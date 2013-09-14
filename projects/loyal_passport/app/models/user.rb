@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
 
   # 软删除
   self.acts_as_paranoid
+  self.validates_as_paranoid
+  self.validates_uniqueness_of_without_deleted :nick_name
+  self.loyal_core_acts_as_has_permalink :with_space => false, :paranoid => true
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -33,7 +36,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  validates :nick_name, :presence => true, :uniqueness => true,
+  validates :nick_name, :presence => true,
     :length => {:minimum => 2, :maximum => 12}
 
   # 岗位分配 ##################
@@ -49,6 +52,10 @@ class User < ActiveRecord::Base
   # 去除空格
   self.strip_whitespace_before_validation :email, :nick_name, :true_name,
     :mobile_number, :permalink
+
+  before_validation do
+    self.permalink = self.nick_name if self.permalink.blank?
+  end
 
   validates_format_of :permalink, :with => PERMALINK_REGEXP, :multiline => true
   validates_length_of :permalink, :minimum => 3, :maximum => 12
