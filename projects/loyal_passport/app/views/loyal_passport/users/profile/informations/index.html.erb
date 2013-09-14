@@ -1,27 +1,27 @@
 <h1>个人中心</h1>
-<div class='informations'>
+<div class='informations show-fields'>
   <div class='field'>
-    <b>昵称: </b>
+    <label>昵称: </label>
     <%= current_user.nick_name %>
   </div>
   <div class='field'>
-    <b>永久链接: </b>
+    <label>永久链接: </label>
     <%= current_user.permalink %>
   </div>
   <div class='field'>
-    <b>邮箱: </b>
+    <label>邮箱: </label>
     <%= current_user.email %>
   </div>
   <div class='field'>
-    <b>登录次数: </b>
+    <label>登录次数: </label>
     <%= current_user.sign_in_count %>
   </div>
   <div class='field'>
-    <b>注册时间: </b>
+    <label>注册时间: </label>
     <%= l current_user.created_at %>
   </div>
   <div class='field'>
-    <b>上一次登录时间: </b>
+    <label>上一次登录时间: </label>
     <%= l current_user.last_sign_in_at %>
   </div>
 </div>

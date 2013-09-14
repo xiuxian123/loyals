@@ -10,6 +10,15 @@ module LoyalPassport
       respond_with(resource, serialize_options(resource))
     end
 
+    def require_no_authentication
+      case params[:action]
+      when 'new'
+        require_no_authentication_no_alert
+      else
+        super
+      end
+    end
+
     def create
       super
     end
