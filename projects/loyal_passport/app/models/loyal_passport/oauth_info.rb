@@ -2,22 +2,25 @@
 module LoyalPassport
   class OauthInfo < ActiveRecord::Base
     # attr_accessible :title, :body
-    STRATEGY_MAP_CONFIG = {
-      :github     => { :value => 1, :name => 'Github' },
-      :qq_connect => { :value => 2, :name => "QQ"}
-    }.freeze
 
-    STRATEGY_VALUES = STRATEGY_MAP_CONFIG.values.map do |_config|
-      _config[:value]
-    end.freeze
+    validates_presence_of :access_token, :strategy_name, :strategy_id
+    validates_inclusion_of :strategy_name, :in => ::User.omniauth_providers
 
-    validates_inclusion_of :strategy_flag, :in => STRATEGY_VALUES
+    def self.providers_regexp
+      @providers_regexp ||= Regexp.new(::User.omniauth_providers.join('|'))
+    end
+
+    def provider_name
+      self.class.provider_name(self.strategy_name)
+    end
+
+    def self.provider_name(strategy_name)
+      I18n.t("devise.omniauth.providers.#{strategy_name}")
+    end
 
     def self.save_with_callback_info strategy_name, strategy_id, info={}
-      strategy_flag = STRATEGY_MAP_CONFIG[strategy_name.to_sym][:value]
-
       oauth_info_scope = self.class.where(
-        :strategy_flag => strategy_flag,
+        :strategy_name => strategy_name,
         :strategy_id   => strategy_id
       )
 
@@ -30,6 +33,11 @@ module LoyalPassport
       oauth_info.nick_name         = info['info']['nick_name']
 
       oauth_info.save
+    end
+
+    # token是否过期
+    def expired?
+      self.blank? || (self.expires_at < Time.now)
     end
 
   end

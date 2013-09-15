@@ -5,6 +5,8 @@ class CreateLoyalPassportOauthLogins < ActiveRecord::Migration
       t.integer :auth_info_id
       t.integer :user_id
 
+      t.integer :status, :null => false, :default => 0
+
       t.timestamps
     end
 

@@ -15,7 +15,11 @@ LoyalPassport::Engine.routes.draw do
         namespace :profile do
           root :to => "informations#index"
         end
+
       end
+
+      get "users/auth/:provider/login(.:format)" => 'users/omniauth_callbacks#request_login',
+        :as => :user_omniauth_request_login, :provider => ::LoyalPassport::OauthInfo.providers_regexp
 
       root :to => "users/sessions#new"
     end

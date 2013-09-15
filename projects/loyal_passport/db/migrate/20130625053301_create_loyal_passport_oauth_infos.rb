@@ -2,7 +2,10 @@
 class CreateLoyalPassportOauthInfos < ActiveRecord::Migration
   def change
     create_table :loyal_passport_oauth_infos do |t|
-      t.integer    :strategy_flag,        :null => false
+      # 第三方标识
+      t.integer    :strategy_name,        :null => false
+
+      # 第三方ID
       t.string     :strategy_id,          :default => '',   :null => false
 
       t.string     :access_token,         :default => '',   :null => false
@@ -24,6 +27,9 @@ class CreateLoyalPassportOauthInfos < ActiveRecord::Migration
       # 博客地址
       t.string     :origin_blog_url,      :null => false,  :default => ''
 
+      # Raw Info
+      t.text       :raw_info_yaml
+
       # 性别
       t.integer    :gender,               :null => false,   :default => 0
 
@@ -34,7 +40,7 @@ class CreateLoyalPassportOauthInfos < ActiveRecord::Migration
 
     add_index :loyal_passport_oauth_infos, [:access_secret]
     add_index :loyal_passport_oauth_infos, [:access_token]
-    add_index :loyal_passport_oauth_infos, [:strategy_id, :strategy_flag], :name => :loyal_passport_oauth_infos_strategy
+    add_index :loyal_passport_oauth_infos, [:strategy_id, :strategy_name], :name => :loyal_passport_oauth_infos_strategy
 
   end
 end

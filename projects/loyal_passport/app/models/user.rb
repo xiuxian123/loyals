@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   PERMALINK_REGEXP  = /^[A-Za-z0-9]+$/.freeze
 
   # attr_accessible :title, :body
-  attr_accessible :nick_name, :true_name, :role_ids, :permalink
+  attr_accessible :nick_name, :true_name, :role_ids
 
   self.apply_simple_captcha :message => I18n.t('activerecord.errors.models.user.attributes.captcha.message')
 
@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   self.acts_as_paranoid
   self.validates_as_paranoid
   self.validates_uniqueness_of_without_deleted :nick_name
-  self.loyal_core_acts_as_has_permalink :with_space => false, :paranoid => true
+  # self.loyal_core_acts_as_has_permalink :with_space => false, :paranoid => true
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
   has_many :assignments, class_name: 'LoyalPassport::Assignment',
     foreign_key: :user_id
 
+  #  角色    ##################
   has_many :roles, class_name: 'LoyalPassport::Role',
     through: :assignments
 
@@ -51,14 +52,7 @@ class User < ActiveRecord::Base
 
   # 去除空格
   self.strip_whitespace_before_validation :email, :nick_name, :true_name,
-    :mobile_number, :permalink
-
-  before_validation do
-    self.permalink = self.nick_name if self.permalink.blank?
-  end
-
-  validates_format_of :permalink, :with => PERMALINK_REGEXP, :multiline => true
-  validates_length_of :permalink, :minimum => 3, :maximum => 12
+    :mobile_number
 
   # 头像
   self.loyal_core_acts_as_has_avatar :avatar

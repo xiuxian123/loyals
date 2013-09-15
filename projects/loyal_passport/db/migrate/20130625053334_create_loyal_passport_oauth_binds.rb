@@ -5,7 +5,9 @@ class CreateLoyalPassportOauthBinds < ActiveRecord::Migration
       t.integer :auth_info_id
       t.integer :user_id
 
-      t.text    :config
+      t.integer :status, :null => false, :default => 0
+
+      t.text    :config_yaml
 
       t.timestamps
     end

@@ -5,5 +5,6 @@ module LoyalPassport
 
     def self.authorize
     end
+
   end
 end
