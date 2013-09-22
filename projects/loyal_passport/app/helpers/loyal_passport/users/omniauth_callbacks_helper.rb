@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 module LoyalPassport
   module Users::OmniauthCallbacksHelper
-    include DeviseHelper
+    include ::Concerns::LoyalPassport::DeviseHelperAble
 
   end
 end

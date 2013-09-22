@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <%= link_to current_user.nick_name, loyal_passport_app.users_profile_root_url(
+  <%= link_to current_user.display_name, loyal_passport_app.users_profile_root_url(
     :subdomain => ::LoyalPassport.config.subdomain
   ) %>
 
@@ -10,9 +10,9 @@
 <% else %>
   <%= link_to I18n.t('devise.views.sign_up'), loyal_passport_app.new_user_registration_url(
     :subdomain => ::LoyalPassport.config.subdomain
-  ), 'loayl-append-params-return-to' => "true" %>
+  ) %>
   <%= link_to I18n.t('devise.views.sign_in'), loyal_passport_app.new_user_session_url(
     :subdomain => ::LoyalPassport.config.subdomain
-  ), 'loayl-append-params-return-to' => "true" %>
+  ) %>
 <% end %>
 

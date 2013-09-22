@@ -3,7 +3,7 @@ class CreateLoyalPassportOauthInfos < ActiveRecord::Migration
   def change
     create_table :loyal_passport_oauth_infos do |t|
       # 第三方标识
-      t.integer    :strategy_name,        :null => false
+      t.string   :strategy_name,        :null => false
 
       # 第三方ID
       t.string     :strategy_id,          :default => '',   :null => false

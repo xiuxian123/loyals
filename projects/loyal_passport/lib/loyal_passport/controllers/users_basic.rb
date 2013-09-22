@@ -10,14 +10,26 @@ module LoyalPassport::Controllers
 
         layout 'loyal_passport/application'
 
+        helper_method :get_loyal_passport_omniauth_login_info
+
       end
     end
 
     module InstanceMethods
+      def get_loyal_passport_omniauth_login_info
+        ::LoyalPassport::OauthInfo.find_by_id(session['loyal_passport.omniauth.oauth_info_id'])
+      end
+
+      def clear_loyal_passport_omniauth_info_session
+        session.delete 'loyal_passport.omniauth.usage'
+        session.delete 'loyal_passport.omniauth.oauth_info_id'
+      end
+
       def init_loyal_passport_request
 
       end
 
+      # 不登录的时候，请不要警告
       def require_no_authentication_no_alert
         assert_is_devise_resource!
         return unless is_navigational_format?

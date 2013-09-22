@@ -21,6 +21,9 @@ LoyalPassport::Engine.routes.draw do
       get "users/auth/:provider/login(.:format)" => 'users/omniauth_callbacks#request_login',
         :as => :user_omniauth_request_login, :provider => ::LoyalPassport::OauthInfo.providers_regexp
 
+      get "users/auth/:provider/login_callback(.:format)" => 'users/omniauth_callbacks#login_callback',
+        :as => :user_omniauth_login_callback, :provider => ::LoyalPassport::OauthInfo.providers_regexp
+
       root :to => "users/sessions#new"
     end
   end

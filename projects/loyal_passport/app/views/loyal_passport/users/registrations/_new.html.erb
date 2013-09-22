@@ -1,0 +1,33 @@
+<fieldset>
+  <legend><%= I18n.t('devise.views.sign_up_title') %></legend>
+  <%#= devise_error_messages! %>
+
+  <div class='fields'>
+     <div class='field'><%= f.label :nick_name %>*<br />
+     <%= f.text_field :nick_name %></div>
+
+     <div class='field'><%= f.label :true_name %><br />
+     <%= f.text_field :true_name %></div>
+
+     <div class='field'><%= f.label :email %>*<br />
+     <%= f.email_field :email %></div>
+
+     <div class='field'><%= f.label :avatar %><br />
+     <%= f.file_field :avatar %></div>
+
+     <div class='field'><%= f.label :password %>*<br />
+     <%= f.password_field :password %></div>
+
+     <div class='field'><%= f.label :password_confirmation %>*<br />
+     <%= f.password_field :password_confirmation %></div>
+
+     <div class='field'><%= f.label :simple_captcha %>*<br />
+     <%= f.simple_captcha %></div>
+
+   <div class='field'><%= f.submit I18n.t('devise.views.sign_up'), :data => {
+     :disable_with => I18n.t('loyal_passport.form_builder.submit.disable_with')
+   } %></div>
+  </div>
+
+</fieldset>
+

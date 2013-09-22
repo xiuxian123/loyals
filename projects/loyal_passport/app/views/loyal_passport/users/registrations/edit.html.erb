@@ -5,25 +5,32 @@
 
   <div class='fields'>
 
-    <div class='field'><%= f.label :email %>: <%= resource.email %></div>
-    <div class='field'><%= f.label :nick_name %>: <%= resource.nick_name %></div>
+    <% if resource.email? %>
+      <div class='field'><%= f.label :email %>: <%= resource.email %></div>
+    <% end %>
+
+    <% if resource.nick_name? %>
+      <div class='field'><%= f.label :nick_name %>: <%= resource.nick_name %></div>
+    <% end %>
 
     <div class='field'>
-      <%= f.label :avatar %>
+      <%= f.label :avatar %><br/>
       <%= image_tag(resource.avatar_url :small) %><br/>
       <%= f.file_field :avatar %>
       <%= f.hidden_field :avatar_cache %>
     </div>
 
-    <div class='field'>
-      <%= f.label :password %> <i>(<%= I18n.t('devise.views.leave_blank_if_you_do_not_want_to_change_it') %>)</i><br />
-      <%= f.password_field :password, :autocomplete => "off" %></div>
-
-    <div class='field'><%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %></div>
-
-    <div class='field'>* <%= f.label :current_password %> <i>(<%= I18n.t('devise.views.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
-      <%= f.password_field :current_password %></div>
+    <% if resource.password? %>
+      <div class='field'>
+        <%= f.label :password %> <i>(<%= I18n.t('devise.views.leave_blank_if_you_do_not_want_to_change_it') %>)</i><br />
+        <%= f.password_field :password, :autocomplete => "off" %></div>
+  
+      <div class='field'><%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation %></div>
+  
+      <div class='field'>* <%= f.label :current_password %> <i>(<%= I18n.t('devise.views.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
+        <%= f.password_field :current_password %></div>
+    <% end %>
 
     <div class='field'><%= f.submit I18n.t("devise.views.update_user_registration"), :data => {
       :disable_with => I18n.t('loyal_passport.form_builder.submit.disable_with')

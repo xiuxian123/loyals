@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 module LoyalPassport
   module Users::UnlocksHelper
-    include DeviseHelper
+    include ::Concerns::LoyalPassport::DeviseHelperAble
 
   end
 end

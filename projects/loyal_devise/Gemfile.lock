@@ -12,7 +12,7 @@ GIT
 PATH
   remote: .
   specs:
-    loyal_devise (2.2.5)
+    loyal_devise (2.2.6)
       bcrypt-ruby (~> 3.0)
       loyal_warden
       omniauth

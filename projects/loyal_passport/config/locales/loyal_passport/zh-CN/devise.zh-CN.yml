@@ -14,7 +14,7 @@ zh-CN:
     omniauth:
       providers:
         github:  'GitHub'
-        qq_connect: 'QQ登录'
+        qq_connect: 'QQ'
     failure:
       permission_authenticate_fail:       '没有相应的权限'
       permission_authenticate_fail_admin: '没有管理员的权限'
