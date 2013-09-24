@@ -23,6 +23,7 @@ module LoyalPassport::Controllers
       def clear_loyal_passport_omniauth_info_session
         session.delete 'loyal_passport.omniauth.usage'
         session.delete 'loyal_passport.omniauth.oauth_info_id'
+        session.delete 'loyal_passport.omniauth.return_to'
       end
 
       def init_loyal_passport_request

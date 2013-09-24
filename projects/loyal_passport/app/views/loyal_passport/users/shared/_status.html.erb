@@ -6,7 +6,7 @@
   <%= link_to I18n.t('devise.views.sign_out'), loyal_passport_app.destroy_user_session_url(
     :subdomain => ::LoyalPassport.config.subdomain
   ),
-  :method => :delete %>
+  :method => ::Devise.sign_out_via %>
 <% else %>
   <%= link_to I18n.t('devise.views.sign_up'), loyal_passport_app.new_user_registration_url(
     :subdomain => ::LoyalPassport.config.subdomain

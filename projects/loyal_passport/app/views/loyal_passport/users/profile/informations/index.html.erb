@@ -2,15 +2,18 @@
 <div class='informations show-fields'>
   <% if current_user.main_oauth_login_info %>
     <div class='field'>
-      <label>来自: </label>
-      <%= "#{current_user.main_oauth_login_info.provider_name}" %>
+      欢迎您来自
+      <b><%= "#{current_user.main_oauth_login_info.provider_name}" %></b>
+      的 <b><%= "#{current_user.main_oauth_login_info.nick_name}" %></b>
     </div>
   <% end %>
 
-  <div class='field'>
-    <label>昵称: </label>
-    <%= current_user.nick_name %>
-  </div>
+  <% if current_user.nick_name? %>
+    <div class='field'>
+      <label>昵称: </label>
+      <%= current_user.nick_name %>
+    </div>
+  <% end %>
 
   <% if current_user.email? %>
     <div class='field'>

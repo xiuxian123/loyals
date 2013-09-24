@@ -34,7 +34,7 @@
       <%- resource_class.omniauth_providers.each do |provider| %>
         <div class='link-line'>
           <%= link_to I18n.t("devise.omniauth.providers.#{provider}"),
-            user_omniauth_request_login_url(provider) %><br />
+            user_omniauth_request_login_url(provider, :return_to => params[:return_to]) %><br />
         </div>
       <% end -%>
   <% end -%>
