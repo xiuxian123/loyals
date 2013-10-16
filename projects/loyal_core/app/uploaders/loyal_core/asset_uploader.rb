@@ -30,7 +30,7 @@ module LoyalCore
 
     def store_dir
       # "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model_id_partition}"
-      "uploads/first/#{impl_model_name_underscore}/#{mounted_as}/#{impl_integer_partition(model.created_at.to_i)}"
+      "uploads/#{impl_model_name_underscore}/#{mounted_as}/#{impl_integer_partition(model.created_at.to_i)}"
     end
 
     def model_id_partition
@@ -65,7 +65,7 @@ module LoyalCore
     def url *args
       stored_file_name = model.send(mounted_as)
 
-      if stored_file_name.present?
+      __url = if stored_file_name.present?
         _url = super
 
         _url = "#{_url}?#{impl_generate_stmap_version}" unless _url.include?('?')
@@ -74,6 +74,10 @@ module LoyalCore
       else
         default_url *args
       end
+
+      __url = "#{::LoyalCore.config.upload_asset_server}#{__url}" unless __url.start_with?('http')
+
+      __url
     end
 
     # Process files as they are uploaded:
@@ -117,7 +121,7 @@ module LoyalCore
     end
 
     def impl_model_hash_data
-      "#{model.class.to_s}-#{model.id}-#{model.created_at.to_i}-ruby800.com-happy-&&-nice"
+      "#{model.class.to_s}-#{model.id}-#{model.created_at.to_i}-#{::LoyalCore.config.upload_asset_hash_data}"
     end
 
     # e.g.: 1234 => "000/000/000/000/001/234"
@@ -126,3 +130,4 @@ module LoyalCore
     end
   end
 end
+

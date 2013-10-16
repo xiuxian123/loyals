@@ -160,7 +160,8 @@ module LoyalPassport::Controllers
           :error  => i18n_message,
           :code   => :unauthorized,
           :status => self.status,
-          :return_to => request.params[:return_to].to_s
+          :return_to => request.params[:return_to].to_s,
+          :message => i18n_message
         }.to_xml(:root => "response")
       elsif {}.respond_to?(method)
         {
@@ -168,8 +169,9 @@ module LoyalPassport::Controllers
             :error  => i18n_message,
             :code   => :unauthorized,
             :status => self.status,
-            :return_to => request.params[:return_to].to_s
-          }
+            :return_to => request.params[:return_to].to_s,
+            :message => i18n_message
+          },
         }.send(method)
       else
         i18n_message

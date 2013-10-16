@@ -159,6 +159,25 @@ textarea:focus, input[type="text"]:focus, input[type="email"]:focus, input[type=
   }
 }
 
+#filter {
+  .name {
+  
+  }
+
+  padding: 5px 5px;
+
+  a {
+    padding: 2px;
+  }
+}
+
+.pagination {
+  span {
+    margin: 2px;
+    padding: 2px;
+  }
+}
+
 #footer {
   .footer-inner {
     text-align: center;
@@ -185,14 +204,14 @@ textarea:focus, input[type="text"]:focus, input[type="email"]:focus, input[type=
 
     .main-content {
 
-      .list {
+      > .list {
         .item {
-          border: 1px solid blue;
+          border: 2px solid #ccc;
           margin: 5px;
           padding: 5px;
 
-          .item-actions {
-            float: right;
+          .item-row {
+            padding: 2px;
           }
         }
       }

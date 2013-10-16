@@ -31,7 +31,7 @@ module LoyalCore
           r.outline = ::Sanitize.clean(
             r.content_text,
             ::LoyalCore.config.sanitize_config[:text]
-          ).to_s[0...LOYAL_CORE_OUTLINE_MAX_LENGTH]
+          ).to_s.gsub(/\n|\t|\r|\s+|　/, '')[0...LOYAL_CORE_OUTLINE_MAX_LENGTH]
         end
 
         # validates_length_of :outline, :maximum => LOYAL_CORE_OUTLINE_MAX_LENGTH

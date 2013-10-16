@@ -52,6 +52,14 @@ module LoyalPassport
       end
     end
 
+    def session_expire_after= expire_after
+      @session_expire_after ||= expire_after
+    end
+
+    def session_expire_after
+      @session_expire_after ||= 30.minutes
+    end
+
     def white_hosts= hosts=DEFAULT_WHITE_HOSTS
       @white_hosts ||= (
         DEFAULT_WHITE_HOSTS.merge(hosts)

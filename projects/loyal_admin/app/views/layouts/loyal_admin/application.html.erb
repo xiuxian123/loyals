@@ -18,6 +18,8 @@
     </div>
   </div>
 
+  <%= render :partial => '/loyal_core/shared/flashes' %>
+
    <div id='container' class='clearfix'>
      <div class='content-block wrapper clearfix'>
        <div class='main-content clearfix'>
@@ -68,7 +70,7 @@
    </div>
 
    <div id='footer'>
-
+    <%= yield :footer %>
    </div>
 
    </body>

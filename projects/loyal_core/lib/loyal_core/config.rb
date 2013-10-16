@@ -88,13 +88,20 @@ module LoyalCore
   end
 
   class Config
-    # 头像的server
-    def avatar_server= server=''
-      @avatar_server ||= server
+    def upload_asset_server= server=''
+      @upload_asset_server ||= server
     end
 
-    def avatar_server
-      @avatar_server ||= ''
+    def upload_asset_server
+      @upload_asset_server ||= ''
+    end
+
+    def upload_asset_hash_data= data=''
+      @upload_asset_hash_data ||= data.to_s
+    end
+
+    def upload_asset_hash_data
+      @upload_asset_hash_data
     end
 
     def clazz_alias= ali={}
