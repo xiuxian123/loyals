@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = LoyalCore::VERSION
   s.authors     = ["happy"]
   s.email       = ["andywang7259@gmail.com"]
-  s.homepage    = "http://develop.xiuxian123.com"
+  s.homepage    = "http://github.com/xiuxian123"
   s.summary     = "Summary of LoyalCore."
   s.description = "Description of LoyalCore."
 

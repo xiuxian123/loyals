@@ -1,5 +1,4 @@
 //= require jquery.cookie
-//= require jquery.ui.all
 //= require loyal_core/ajax
 //= require loyal_core/tools/login_dialog
 //= require loyal_core/tools/font_selector
