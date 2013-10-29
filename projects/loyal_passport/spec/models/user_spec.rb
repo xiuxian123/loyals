@@ -10,4 +10,6 @@ describe ::User do
     user.should_not be_nil
     user.super_admin?.should be_true
   end
+
+
 end

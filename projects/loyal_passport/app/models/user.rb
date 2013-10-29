@@ -2,8 +2,7 @@
 class User < ActiveRecord::Base
   include ::Concerns::LoyalPassport::HomeworksAble
 
-  # PERMALINK_REGEXP  = /^[A-Za-z0-9\_]+$/.freeze
-  PERMALINK_REGEXP  = /^[A-Za-z0-9]+$/.freeze
+  PERMALINK_REGEXP = /\A[a-z][a-z0-9_\-]*\z/.freeze
 
   USER_REGISTER_WAY_STATUSES = {
     'email' => { :value => 0, :name => '邮箱' },
@@ -19,7 +18,7 @@ class User < ActiveRecord::Base
   end.freeze
 
   # attr_accessible :title, :body
-  attr_accessible :nick_name, :true_name, :role_ids
+  attr_accessible :nick_name, :true_name, :role_ids, :permalink, :avatar, :password, :password_confirmation
 
   # 验证码相关
   self.apply_simple_captcha :message => I18n.t('activerecord.errors.models.user.attributes.captcha.message')
@@ -63,6 +62,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   validates :nick_name, :length => {:minimum => 2, :maximum => 12}, :allow_blank => true
+  validates_format_of :permalink, :with => PERMALINK_REGEXP
 
   # 岗位分配 ##################
   has_many :assignments, class_name: 'LoyalPassport::Assignment',
@@ -82,12 +82,17 @@ class User < ActiveRecord::Base
   # 头像
   self.loyal_core_acts_as_has_avatar :avatar
 
+  def permalink?
+    !!PERMALINK_REGEXP.match(self.permalink)
+  end
+
   def self.user_from_oauth_info oauth_info
     return if oauth_info.nil?
 
     self.transaction do
       user = oauth_info.login_user  # 登录的用户
 
+      # 当前信息没有对应的用户
       if user.nil?
         user = self.new
 
@@ -125,12 +130,12 @@ class User < ActiveRecord::Base
     way_config = USER_REGISTER_WAY_STATUSES[way]
 
     if way_config
-      self.register_way_status = way_config[:value]
+      self.register_way_value = way_config[:value]
     end
   end
 
   def register_way
-    USER_REGISTER_WAY_STATUSE_MAP[self.register_way_status] || {}
+    USER_REGISTER_WAY_STATUSE_MAP[self.register_way_value] || {}
   end
 
   # 注册来源是第三方
@@ -164,8 +169,8 @@ class User < ActiveRecord::Base
   end
 
   # 是否验证过了
+  #   - 如果 已经第三方登录了，则可以认为已经验证过了
   def confirmed?
-    # 如果 已经第三方登录了，则可以认为已经验证过了
     self.oauth_login_confirmed? || self.email_confirmed?
   end
 
@@ -216,7 +221,6 @@ class User < ActiveRecord::Base
 
   # 需要验证邮箱
   def email_confirmation_required?
-    # !email_confirmed?
     !self.confirmed?
   end
 

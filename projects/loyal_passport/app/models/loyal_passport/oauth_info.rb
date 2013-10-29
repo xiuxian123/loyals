@@ -30,17 +30,21 @@ module LoyalPassport
       @login_user = user
     end
 
+    def login_user?
+      !!self.login_user
+    end
+
+    # 来源名称
+    def provider_name
+      self.class.provider_name_of(self.strategy_name)
+    end
+
     def self.omniauth_provider_names
       @omniauth_provider_names ||= ::User.omniauth_providers.map(&:to_s)
     end
 
     def self.providers_regexp
       @providers_regexp ||= Regexp.new(::User.omniauth_providers.join('|'))
-    end
-
-    # 来源名称
-    def provider_name
-      self.class.provider_name_of(self.strategy_name)
     end
 
     # 获取I18n名称

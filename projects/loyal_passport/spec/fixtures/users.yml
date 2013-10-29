@@ -4,3 +4,7 @@ one:
   true_name: 'wangjinzhong'
   email:     '352626958@qq.com'
   permalink: 'happy'
+
+permalink_error:
+  id: 2
+  permalink: ''

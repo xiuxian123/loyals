@@ -14,6 +14,14 @@ LoyalPassport::Engine.routes.draw do
       namespace :users do
         namespace :profile do
           root :to => "informations#index"
+
+          resources :oauth_logins, :only => [:new, :create, :index] do
+            collection do
+              post :cancel
+            end
+          end
+
+          resources :informations, :only => [:index]
         end
 
       end

@@ -30,12 +30,14 @@
     </div>
   <% end -%>
   
-  <%- if devise_mapping.omniauthable? %>
+  <%- if devise_mapping.omniauthable? && resource_class.omniauth_providers.any? %>
+    <ul>
       <%- resource_class.omniauth_providers.each do |provider| %>
-        <div class='link-line'>
+        <li class='link-line'>
           <%= link_to I18n.t("devise.omniauth.providers.#{provider}"),
             user_omniauth_request_login_url(provider, :return_to => params[:return_to]) %><br />
-        </div>
+        </li>
       <% end -%>
+    </ul>
   <% end -%>
 </div>

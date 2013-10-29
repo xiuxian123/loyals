@@ -55,7 +55,12 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :deleted_at
 
       # 发布状态 ###############################
-      t.integer :publish_status, default: 0, :null => false
+      t.integer :publish_status_value, default: 0, :null => false
+
+      t.integer :main_oauth_login_info_id
+      t.integer :register_way_value, :default => 0, :null => false
+      # 性别值
+      t.integer :gender_value, :default => 0, :null => false
 
       t.timestamps
     end

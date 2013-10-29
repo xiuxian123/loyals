@@ -8,7 +8,7 @@ class CreateLoyalPassportLockers < ActiveRecord::Migration
       t.integer :position, default: 0, null: false
 
       # 发布状态 ###############################
-      t.integer :publish_status, default: 0
+      t.integer :publish_status_value, default: 0, :null => false
 
       # 级别 #################################
       t.integer :level, default: 0, null: false

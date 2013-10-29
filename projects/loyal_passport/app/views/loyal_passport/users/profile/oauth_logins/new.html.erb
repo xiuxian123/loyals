@@ -1,0 +1,21 @@
+<div class='row'>
+  <div class='field'>
+    您确定要将 
+    <b><%= "#{@loyal_passport_omniauth_login_info.provider_name}" %></b>
+    的 <b><%= "#{@loyal_passport_omniauth_login_info.nick_name}" %></b>
+
+    绑定到 帐号：<%= current_user.nick_name %> 上？
+
+    一旦绑定，您就可以使用第三方帐号登录
+  </div>
+
+  <%= form_for @oauth_login, :url => loyal_passport_app.users_profile_oauth_logins_url, :method => :post do |f| %>
+    <%= util_output_return_to_hidden_field_tag %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :oauth_info_id %>
+    <%= f.submit "绑定", :name => nil %>
+
+    <%= link_to "取消", loyal_passport_app.cancel_users_profile_oauth_logins_url(:return_to => params[:return_to]), :method => :post %>
+  <% end %>
+
+</div>

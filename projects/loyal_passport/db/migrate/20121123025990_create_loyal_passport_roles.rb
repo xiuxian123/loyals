@@ -10,7 +10,7 @@ class CreateLoyalPassportRoles < ActiveRecord::Migration
       # 描述
       t.text    :description
 
-      t.integer :publish_status, :default => 0,  :null => false
+      t.integer :publish_status_value, :default => 0,  :null => false
 
       ##### soft deleted #######################
       t.datetime :deleted_at

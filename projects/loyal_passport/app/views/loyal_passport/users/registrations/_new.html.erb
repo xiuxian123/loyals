@@ -1,8 +1,10 @@
 <fieldset>
   <legend><%= I18n.t('devise.views.sign_up_title') %></legend>
-  <%#= devise_error_messages! %>
 
   <div class='fields'>
+     <div class='field'><%= f.label :permalink %>*<br />
+     <%= f.text_field :permalink %></div>
+
      <div class='field'><%= f.label :nick_name %>*<br />
      <%= f.text_field :nick_name %></div>
 
@@ -20,6 +22,8 @@
 
      <div class='field'><%= f.label :password_confirmation %>*<br />
      <%= f.password_field :password_confirmation %></div>
+
+     <%= util_output_return_to_hidden_field_tag %>
 
      <div class='field'><%= f.label :simple_captcha %>*<br />
      <%= f.simple_captcha %></div>

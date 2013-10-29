@@ -1,26 +1,47 @@
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
- <fieldset>
-    <legend><%= I18n.t('devise.views.sign_in') %></legend>
-    <%#= devise_error_messages! %>
+<% if util_loyal_passport_omniauth_login_info_present? %>
+    <%= render :partial => 'loyal_passport/users/registrations/oauth_welcome_info', :locals => {
+      :info => @loyal_passport_omniauth_login_info
+    } %>
 
-    <div class='fields'>
-       <div class='field'><%= f.label :email %><br />
-       <%= f.email_field :email %></div>
-
-       <div class='field'><%= f.label :password %><br />
-       <%= f.password_field :password %></div>
-
-       <% if devise_mapping.rememberable? -%>
-         <div class='field'><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-       <% end -%>
-
-       <%= util_output_return_to_hidden_field_tag %>
-
-       <div class='field'><%= f.submit I18n.t('devise.views.sign_in'), :data => {
-         :disable_with => I18n.t('loyal_passport.form_builder.submit.disable_with')
-       } %></div>
+  <% if params[:action] == 'new' %>
+    <div class='row'>
+      <%= render :partial => 'loyal_passport/users/registrations/new_session', :locals => {
+        :resource => ::User.new,
+        :resource_name => :user
+      } %>
     </div>
-  </fieldset>
+
+    <div class='row'>
+      如果之前没有注册过，您可以 <%= link_to I18n.t('devise.views.sign_up'), new_registration_path(resource_name) %><br />
+    </div>
+  <% end %>
+
+<% else %>
+
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+   <fieldset>
+      <legend><%= I18n.t('devise.views.sign_in') %></legend>
+      <%#= devise_error_messages! %>
+  
+      <div class='fields'>
+         <div class='field'><%= f.label :email %><br />
+         <%= f.email_field :email %></div>
+  
+         <div class='field'><%= f.label :password %><br />
+         <%= f.password_field :password %></div>
+  
+         <% if devise_mapping.rememberable? -%>
+           <div class='field'><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+         <% end -%>
+  
+         <%= util_output_return_to_hidden_field_tag %>
+  
+         <div class='field'><%= f.submit I18n.t('devise.views.sign_in'), :data => {
+           :disable_with => I18n.t('loyal_passport.form_builder.submit.disable_with')
+         } %></div>
+      </div>
+    </fieldset>
+  <% end %>
 <% end %>
 
 <%= render "loyal_passport/users/shared/links" %>

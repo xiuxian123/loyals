@@ -1,0 +1,8 @@
+<h2>您绑定的第三方登录帐号</h2>
+
+<% @oauth_logins.each do |_login| %>
+  <div class='row'>
+    昵称: <%= _login.oauth_info.nick_name %>
+    来源: <%= _login.oauth_info.provider_name %>
+  </div>
+<% end %>

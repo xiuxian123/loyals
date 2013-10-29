@@ -13,6 +13,8 @@
       <div class='field'><%= f.label :nick_name %>: <%= resource.nick_name %></div>
     <% end %>
 
+    <%= util_output_return_to_hidden_field_tag %>
+
     <div class='field'>
       <%= f.label :avatar %><br/>
       <%= image_tag(resource.avatar_url :small) %><br/>

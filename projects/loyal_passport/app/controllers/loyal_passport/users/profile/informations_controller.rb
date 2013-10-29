@@ -7,13 +7,10 @@ module LoyalPassport::Users::Profile
       controller.send :authenticate_user!, :force => true
     end
 
-    # before_filter :loyal_authenticate_admin!
-
     # users/profile/informations
     def index
 
     end
-
   end
 end
 

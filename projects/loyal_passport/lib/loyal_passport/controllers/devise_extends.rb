@@ -7,9 +7,9 @@ module LoyalPassport::Controllers
       if params[:return_to].present?
         params[:return_to]
       else
-        loyal_passport_app.users_profile_root_url
+        # 需要绑定第三方帐号
+        loyal_passport_app.users_profile_informations_url
       end
-
     end
 
     #### 更新完
@@ -17,7 +17,7 @@ module LoyalPassport::Controllers
       if params[:return_to].present?
         params[:return_to]
       else
-        loyal_passport_app.users_profile_root_url
+        loyal_passport_app.users_profile_informations_url
       end
 
     end
