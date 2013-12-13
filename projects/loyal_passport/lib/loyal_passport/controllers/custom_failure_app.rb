@@ -31,12 +31,11 @@ module LoyalPassport::Controllers
     end
 
     def redirect
-      # store_location!
       options = {}
 
       _redirect_url = redirect_url
 
-      if (return_to = failures_url_return_to) && (return_to != _redirect_url)
+      if (return_to = failures_url_return_to) && (return_to != _redirect_url) && return_to.present?
         options[:return_to] = return_to
       end
 

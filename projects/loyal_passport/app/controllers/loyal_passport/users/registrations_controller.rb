@@ -11,7 +11,9 @@ module LoyalPassport
     end
 
     def create
-      sign_up_params.permit(:nick_name, :permalink, :true_name, :captcha, :captcha_key)
+      sign_up_params.permit(
+        :nick_name, :permalink, :true_name, :captcha, :captcha_key, :email, :password, :password_confirmation
+      )
 
       build_resource(sign_up_params)
 
